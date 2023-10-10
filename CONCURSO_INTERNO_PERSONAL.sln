@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CONCURSO_INTERNO_PERSONAL", "CONCURSO_INTERNO_PERSONAL\CONCURSO_INTERNO_PERSONAL.csproj", "{646FDEBF-B0F2-40C5-AB65-3929947307F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{646FDEBF-B0F2-40C5-AB65-3929947307F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{646FDEBF-B0F2-40C5-AB65-3929947307F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{646FDEBF-B0F2-40C5-AB65-3929947307F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{646FDEBF-B0F2-40C5-AB65-3929947307F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B28AD180-FEB4-4531-83C0-AEC04D6111A3}
+	EndGlobalSection
+EndGlobal
