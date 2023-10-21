@@ -1,4 +1,5 @@
-﻿using CONCURSO_INTERNO_PERSONAL.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using CONCURSO_INTERNO_PERSONAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,10 +8,12 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly SmvConcursoInternoContext _DBcontext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, SmvConcursoInternoContext context)
         {
             _logger = logger;
+            _DBcontext = context;
         }
 
         public IActionResult Index()
