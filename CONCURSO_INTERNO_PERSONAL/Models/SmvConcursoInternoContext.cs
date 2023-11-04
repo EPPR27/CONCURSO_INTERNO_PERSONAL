@@ -14,7 +14,6 @@ public partial class SmvConcursoInternoContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<Usuario> Usuarios { get; set; }
 
     public virtual DbSet<AprobacionSueldo> AprobacionSueldos { get; set; }
 
@@ -317,27 +316,6 @@ public partial class SmvConcursoInternoContext : DbContext
                 .HasForeignKey(d => d.Dni)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_DNI");
-        });
-
-        modelBuilder.Entity<Usuario>(entity =>
-        {
-            entity.HasKey(e => e.Id_Us).HasName("PK__USUARIO__014848A5564FA5FF");
-
-            entity.ToTable("USUARIO");
-
-            entity.Property(e => e.Id_Us).HasColumnName("id_us");
-            entity.Property(e => e.Name_Us)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("name_us");
-            entity.Property(e => e.Email_Us)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("email_us");
-            entity.Property(e => e.Password_Us)
-                .HasMaxLength(100)
-                .IsUnicode(true)
-                .HasColumnName("password_us");
         });
 
         OnModelCreatingPartial(modelBuilder);
