@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using CONCURSO_INTERNO_PERSONAL.Models;
+using DinkToPdf;
+using DinkToPdf.Contracts;
+using CONCURSO_INTERNO_PERSONAL.Extension;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +14,11 @@ builder.Services.AddDbContext<SmvConcursoInternoContext>
     options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSQL"))
     );
+
+var context = new CustomAssamblyLoadContext();
+context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "LibreriaPDF/libwkhtmltox.dll"));
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
 
 var app = builder.Build();
 
@@ -30,6 +39,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=ContratacionPersonal}/{action=TablaContratPersonal}/{id?}");
 
 app.Run();

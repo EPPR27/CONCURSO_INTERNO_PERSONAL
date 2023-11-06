@@ -1,0 +1,43 @@
+﻿@model CONCURSO_INTERNO_PERSONAL.Models.Personal
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <div class="card-body pt-5">
+        <h2 class="text-center">Contratacion de Personal</h2>
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <form asp-action="MostrarDetalle" asp-controller="ContratacionPersonal">
+                    <input type="hidden" asp-for="Dni" />
+
+                    <div class="mb-2">
+                        <label class="form-label fw-bolder" asp-for="Dni">DNI</label>
+                        <input class="form-control form-control-sm" asp-for="Dni" type="text" readonly />
+                    </div>
+
+
+                    <div class="mb-2">
+                    <label class="form-label fw-bolder" asp-for="NombapePers">Personal</label>
+                        <input class="form-control form-control-sm" asp-for="NombapePers" type="text" readonly />
+                    </div>
+                    <div class="mb-2">
+                    <label class="form-label fw-bolder" asp-for="oPuesto.NomPuesto">Puesto</label>
+                        <input class="form-control form-control-sm" asp-for="oPuesto.NomPuesto" type="text" readonly />
+                    </div>
+                    <div class="mb-2">
+                    <label class="form-label fw-bolder" asp-for="oPuesto.Sueldo">Sueldo</label>
+                        <input class="form-control form-control-sm" asp-for="oPuesto.Sueldo" type="text" readonly />
+                    </div>
+                    <div class="p-1 align-content-center">
+                        <a class="btn btn-sm btn-success" asp-controller="ContratacionPersonal" asp-action="MostrarPDFenPagina" target="_blank">Mostrar Contrato</a>
+                        <a class="btn btn-sm btn-success" asp-controller="ContratacionPersonal" asp-action="DescargarPDF">Generar Contrato</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
