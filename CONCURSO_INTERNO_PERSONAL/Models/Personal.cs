@@ -27,13 +27,13 @@ public partial class Personal
 
     public virtual ICollection<AprobacionSueldo> AprobacionSueldos { get; set; } = new List<AprobacionSueldo>();
 
-    public virtual ConocimientosLaborale? IdClNavigation { get; set; }
+    public virtual ConocimientosLaborale? oConocimientosLaborales { get; set; }
 
-    public virtual HabilidadesBlanda? IdHbNavigation { get; set; }
+    public virtual HabilidadesBlanda? oHabilidadesBlandas { get; set; }
 
-    public virtual PruebasMedica? IdPruebasMedicasNavigation { get; set; }
+    public virtual PruebasMedica? oPruebasMedicas { get; set; }
 
-    public virtual Puesto? IdPuestoNavigation { get; set; }
+    public virtual Puesto? oPuesto { get; set; }
 
     public virtual ICollection<SolicitudSueldo> SolicitudSueldos { get; set; } = new List<SolicitudSueldo>();
 }
