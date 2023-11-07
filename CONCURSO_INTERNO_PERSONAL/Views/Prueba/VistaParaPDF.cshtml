@@ -1,0 +1,43 @@
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.Prueba>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VistaParaPDF</title>
+
+    <link rel="stylesheet" href="/css/estilos_pdf-Prueba.css">
+</head>
+<body>
+
+    
+    <div class="container">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="pregunta">
+                    <p> <strong> Pregunta @item.IdPregunta : </strong></p>
+                    <p>@item.oPregunta.Enunciado</p>
+                    <ul class="opciones">
+                        <li class="opcion"> <span>a) </span>@item.oPregunta.OpcionA</li>
+                        <li class="opcion"> <span>b) </span>@item.oPregunta.OpcionB</li>
+                        <li class="opcion"> <span>c) </span>@item.oPregunta.OpcionC</li>
+                        <li class="opcion"> <span>d) </span>@item.oPregunta.OpcionD</li>
+                    </ul>
+                </div>
+         
+
+
+
+        }
+    </div>
+    
+
+
+</body>
+</html>

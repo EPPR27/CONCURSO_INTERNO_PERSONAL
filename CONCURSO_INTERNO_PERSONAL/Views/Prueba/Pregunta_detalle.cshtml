@@ -1,0 +1,54 @@
+﻿@model CONCURSO_INTERNO_PERSONAL.Models.VMPrueba.PruebaVM
+
+
+@{
+    ViewData["Title"] = "Pregunta_detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Pregunta_detalle</h1>
+<div class="row">
+    <div class="col-sm-4">
+
+        <form asp-action="Pregunta_detalle" asp-controller="Prueba" method="post">
+
+
+            <div class="mb-2">
+                <label class="form-label">Pregunta</label>
+                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.Enunciado" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Respuesta A</label>
+                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.OpcionA" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Respuesta B</label>
+                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.OpcionB" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Respuesta C</label>
+                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.OpcionC" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Respuesta D</label>
+                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.OpcionD" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" >Respuesta Corecta</label>
+                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.RespuestaCorrecta" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Prueba.Puntaje">Puntaje</label>
+                <input class="form-control form-control-sm" asp-for="Prueba.Puntaje" type="text" />
+            </div>
+
+
+
+
+            <button type="submit" class="btn btn-primary">guardar</button>
+              
+              
+        </form>
+
+    </div>
+</div>
