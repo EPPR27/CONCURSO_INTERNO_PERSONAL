@@ -7,11 +7,11 @@ public partial class Prueba
 {
     public int IdResultado { get; set; }
 
-    public int IdPregunta { get; set; }
+    public int? IdPregunta { get; set; }
 
-    public string RespuestaCorrecta { get; set; } = null!;
+    public string? RespuestaCorrecta { get; set; }
 
-    public int Puntaje { get; set; }
+    public int? Puntaje { get; set; }
 
-    public virtual Preguntum IdPreguntaNavigation { get; set; } = null!;
+    public virtual Preguntum? oPregunta { get; set; }
 }

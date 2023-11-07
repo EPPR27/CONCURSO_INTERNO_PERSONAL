@@ -247,7 +247,7 @@ public partial class SmvConcursoInternoContext : DbContext
                 .HasMaxLength(1)
                 .HasColumnName("respuesta_correcta");
 
-            entity.HasOne(d => d.IdPreguntaNavigation).WithMany(p => p.Pruebas)
+            entity.HasOne(d => d.oPregunta).WithMany(p => p.Pruebas)
                 .HasForeignKey(d => d.IdPregunta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PREGUNTA");
