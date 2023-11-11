@@ -1,4 +1,4 @@
-﻿
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.Personal>
 @{
     Layout = null;
 }
@@ -9,8 +9,56 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Seleccion Personal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
-    <h1>Seleccion Personal</h1>
+    <div class="card">
+        <div class="card-header">
+            <h5>Seleccion Personal</h5>
+        </div>
+        <div class="card-body w-100">
+            <a class="btn btn-success btn-sm" asp-action="CBPruebasMedicas" asp-controller="SeleccionPersonal" asp-route-IdPersonal="0">Crear Personal</a>
+            <hr />
+            <table class="table table-dark table-striped text-center ">
+                <thead>
+                    <tr>
+                        <th>DNI</th>
+                        <th>Personal</th>
+                        <th>Puesto</th>
+                        <th>Habilidades Blandas</th>
+                        <th>Conocimientos Laborales</th>
+                        <th>Referencias Laborales</th>
+                        <th>Puntaje de Prueba de Conocimientos</th>
+                        <th>Puntaje CV</th>
+                        <th>Puntaje Entrevista</th>
+                        <th>Pruebas Medicas</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Dni</td>
+                            <td>@item.NombapePers</td>
+                            <td>@item.oPuesto.NomPuesto</td>
+                            <td>@item.oHabilidadesBlandas.NomHb</td>
+                            <td>@item.oConocimientosLaborales.NomCl</td>
+                            <td>@item.RefeLaboral</td>
+                            <td>@item.Ppc</td>
+                            <td>@item.Pcv</td>
+                            <td>@item.Pentrevista</td>
+                            <td>@item.oPruebasMedicas.Estado</td>
+                            <td>
+                                <a class="btn btn-success btn-sm p-2" asp-action="CBPruebasMedicas" asp-controller="SeleccionPersonal" asp-route-IdPersonal="@item.Idpersonal"> Editar </a>
+                                <a class="btn btn-danger btn-sm p-2" asp-action="Eliminar" asp-controller="SeleccionPersonal" asp-route-IdPersonal="@item.Idpersonal"> Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -5,7 +5,9 @@ namespace CONCURSO_INTERNO_PERSONAL.Models;
 
 public partial class Personal
 {
-    public string Dni { get; set; } = null!;
+    public int Idpersonal { get; set; }
+
+    public int Dni { get; set; }
 
     public string NombapePers { get; set; } = null!;
 

@@ -1,0 +1,81 @@
+﻿@model CONCURSO_INTERNO_PERSONAL.Models.Personal
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Eliminar Personal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container-sm">
+        <h3 class="text-danger"> ¿Seguro que deseas eliminar el empleado?</h3>
+        <hr />
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <form asp-action="Eliminar" asp-controller="SeleccionPersonal" method="post">
+                    <input type="hidden" asp-for="Idpersonal" />
+
+                    <div class="mb-2">
+                        <label class="form-label fw-bold" asp-for="Dni">DNI</label>
+                        <input class="form-control form-control-sm" asp-for="Dni" type="text" disabled />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label fw-bold" asp-for="NombapePers">Personal</label>
+                        <input class="form-control form-control-sm" asp-for="NombapePers" type="text" disabled />
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label fw-bold" asp-for="oPuesto.NomPuesto">Puesto</label>
+                        <input class="form-control form-control-sm" asp-for="oPuesto.NomPuesto" type="text" disabled />
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label fw-bold" asp-for="oHabilidadesBlandas.NomHb">Habilidades Blandas</label>
+                        <input class="form-control form-control-sm" asp-for="oHabilidadesBlandas.NomHb" type="text" disabled />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" asp-for="oConocimientosLaborales.NomCl">Conocimientos Laborales</label>
+                        <input class="form-control form-control-sm" asp-for="oConocimientosLaborales.NomCl" type="text" disabled />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" asp-for="RefeLaboral">Referencia Laboral</label>
+                        <input class="form-control form-control-sm" asp-for="RefeLaboral" type="text" disabled />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" asp-for="Ppc">Puntaje Prueba de Conocimientos</label>
+                        <input class="form-control form-control-sm" asp-for="Ppc" type="text" disabled />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" asp-for="Pcv">Puntaje Curriculum Vitae</label>
+                        <input class="form-control form-control-sm" asp-for="Pcv" type="text" disabled />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" asp-for="Pentrevista">Puntaje Entrevista</label>
+                        <input class="form-control form-control-sm" asp-for="Pentrevista" type="text" disabled />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" asp-for="oPruebasMedicas.IdPruebasMedicas">Pruebas Médicas</label>
+                        <input class="form-control form-control-sm" asp-for="oPruebasMedicas.IdPruebasMedicas" type="text" disabled />
+                    </div>
+
+                    <div class="mb-2">
+
+                        <button class="btn btn-danger btn-sm w-25" type="submit">Eliminar</button>
+                        <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="SeleccionPersonal">Volver</a>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

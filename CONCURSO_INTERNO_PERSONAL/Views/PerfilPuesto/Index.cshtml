@@ -1,5 +1,4 @@
-﻿@model CONCURSO_INTERNO_PERSONAL.Models.VMPerfil_Puesto.Perfil_Puesto_VM
-@{
+﻿@model CONCURSO_INTERNO_PERSONAL.Models.VMPerfil_Puesto.Perfil_Puesto_VM 
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -27,11 +26,11 @@
             </div>
             <div class="mb-2">
                 <label class="form-label">Habilidades Blandas</label>
-                <input class="form-control form-control-sm" asp-for="oPerfilPuesto.oHabilidades.NomHb" type="text" />
+                <input class="form-control form-control-sm" asp-for="oPerfilPuesto.oHabilidadesBlandas.NomHb" type="text" />
             </div>
             <div class="mb-2">
                 <label class="form-label">Conocientos Laborales</label>
-                <input class="form-control form-control-sm" asp-for="oPerfilPuesto.oConocimientoslaborales.NomCl" type="text" />
+                <input class="form-control form-control-sm" asp-for="oPerfilPuesto.oConocimientosLaborales.NomCl" type="text" />
             </div>
 
 
