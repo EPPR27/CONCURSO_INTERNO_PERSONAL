@@ -1,5 +1,6 @@
 ﻿using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CONCURSO_INTERNO_PERSONAL.Models;
@@ -60,6 +61,7 @@ namespace Prueba_CRUD.Controllers
 
             return File(archivoPDF, "application/pdf");
         }
+        [Authorize(Roles = "encargadoSeleccionPersonal")]
         public IActionResult Prueba_index()
         {
             List<Prueba> lista = _DBContext.Pruebas.Include(e => e.oPregunta).ToList();

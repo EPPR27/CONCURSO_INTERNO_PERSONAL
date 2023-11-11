@@ -1,5 +1,6 @@
 ﻿using CONCURSO_INTERNO_PERSONAL.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
@@ -79,6 +80,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             return File(archivoPDF, "application/pdf", nombrePDF);
         }
 
+        [Authorize(Roles = "jefeRecursosHumanos")]
         public IActionResult TablaContratPersonal()
         {
             List<Personal> lista = _SmvContext.Personals.Include(pt => pt.oPuesto).ToList();
