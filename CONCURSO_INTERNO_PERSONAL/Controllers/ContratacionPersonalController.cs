@@ -87,15 +87,15 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             return View(lista);
         }
 
-        public async Task<IActionResult> MostrarDetalle(string? Dni)
+        public async Task<IActionResult> MostrarDetalle(int idPersonal)
         {
-            if (Dni == null || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
+            if (idPersonal == null || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
             {
                 return NotFound();
             }
 
             var personal = await _SmvContext.Personals.Include(pt =>pt.oPuesto)
-                .FirstOrDefaultAsync(m => m.Dni == Dni);
+                .FirstOrDefaultAsync(m => m.Idpersonal == idPersonal);
             if (personal == null)
             {
                 return NotFound();

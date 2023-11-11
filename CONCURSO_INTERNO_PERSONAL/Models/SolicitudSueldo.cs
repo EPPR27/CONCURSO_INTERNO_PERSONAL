@@ -7,13 +7,13 @@ public partial class SolicitudSueldo
 {
     public int IdSolicSueldo { get; set; }
 
-    public string Dni { get; set; } = null!;
+    public int Idpersonal { get; set; }
 
     public int SueldoSolic { get; set; }
 
     public string Descripcion { get; set; } = null!;
 
-    public virtual Personal DniNavigation { get; set; } = null!;
+    public virtual Personal IdpersonalNavigation { get; set; } = null!;
 
     public virtual ICollection<PersonalPuesto> PersonalPuestos { get; set; } = new List<PersonalPuesto>();
 }

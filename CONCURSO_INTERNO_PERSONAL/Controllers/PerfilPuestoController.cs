@@ -41,14 +41,14 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
             var habilidad = new HabilidadesBlanda
             {
-                IdHb = oPerfil_Puesto_VM.oPerfilPuesto.oHabilidades.IdHb,
-                NomHb = oPerfil_Puesto_VM.oPerfilPuesto.oHabilidades.NomHb
+                IdHb = oPerfil_Puesto_VM.oPerfilPuesto.oHabilidadesBlandas.IdHb,
+                NomHb = oPerfil_Puesto_VM.oPerfilPuesto.oHabilidadesBlandas.NomHb
 
             };
             var conocimientos = new ConocimientosLaborale
             {
-                IdCl = oPerfil_Puesto_VM.oPerfilPuesto.oConocimientoslaborales.IdCl,
-                NomCl = oPerfil_Puesto_VM.oPerfilPuesto.oConocimientoslaborales.NomCl
+                IdCl = oPerfil_Puesto_VM.oPerfilPuesto.oConocimientosLaborales.IdCl,
+                NomCl = oPerfil_Puesto_VM.oPerfilPuesto.oConocimientosLaborales.NomCl
 
 
             };
@@ -69,8 +69,8 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             var perfil = new PerfilPuesto
             {
 
-                oHabilidades = habilidad,
-                oConocimientoslaborales = conocimientos,
+                oHabilidadesBlandas = habilidad,
+                oConocimientosLaborales = conocimientos,
                 oSede = sede,
                 oPuesto = pues,
                 IdHb = habilidad.IdHb,

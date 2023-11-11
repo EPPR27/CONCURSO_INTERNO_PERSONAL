@@ -15,12 +15,11 @@ public partial class PerfilPuesto
 
     public int? IdCl { get; set; }
 
-    public virtual ConocimientosLaborale oConocimientoslaborales { get; set; }
+    public virtual ConocimientosLaborale? oConocimientosLaborales { get; set; }
 
-    public virtual HabilidadesBlanda oHabilidades { get; set; }
+    public virtual HabilidadesBlanda? oHabilidadesBlandas { get; set; }
 
-    public virtual Puesto oPuesto { get; set; }
+    public virtual Puesto? oPuesto { get; set; }
 
-    public virtual Sede oSede { get; set; }
-
+    public virtual Sede? oSede { get; set; }
 }
