@@ -1,0 +1,51 @@
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.Personal>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lista de Contratacion de Personal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+    <body>
+        <div class="card">
+            <div class="card-header">
+                <h5>Contratación de Personal</h5>
+            </div>
+            <div class="card-body w-100">
+
+                <hr />
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>Personal</th>
+                            <th>Puesto</th>
+                            <th>Sueldo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Dni</td>
+                                <td>@item.NombapePers</td>
+                                <td>@item.oPuesto.NomPuesto</td>
+                                <td>@item.oPuesto.Sueldo</td>
+                                <td>
+                                    <a class="btn btn-success btn-sm" asp-action="MostrarDetalle" asp-controller="ContratacionPersonal" asp-route-Dni="@item.Dni"> Mostrar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+

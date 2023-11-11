@@ -1,0 +1,53 @@
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.Personal>
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        span{
+            font-weight: bolder;
+        }
+    </style>
+</head>
+    
+<body>
+    @foreach(var item in Model)
+    {
+        <div class="">
+            <h1 class="text-center">Contratacion de Personal</h1>
+            <div class="text-center p-5">
+                <h3 class="text-center">
+                    Conste por el presente contrato de trabajo, que celebran de una parte del contrato al señor(a) <span>@item.NombapePers</span>
+                    con su documento nacional de identidad <span>@item.Dni</span>. Será denominado como el nuevo <span>@item.oPuesto.NomPuesto</span>,
+                    el cuál deberá aceptar los siguientes términos y condiciones al firmar este contrato.
+                </h3>
+                <h3>
+                    EL Empleador requiere la contratación de personal capacitado como <span>@item.oPuesto.NomPuesto</span> para
+                    la elaboración del contrato de Personal, La fecha de inicio será comunicada a su dirección de correo personal,
+                    asegurando así una transición sin contratiempos y un comienzo efectivo en esta entidad.
+                </h3>
+                <h3>
+                    Se deberá pagar al trabajador de <span>@item.oPuesto.NomPuesto</span> un sueldo con la cantiad de <span>@item.oPuesto.Sueldo</span>
+                    el cuál será entregado mensualmente cada 18 del mes correspondido.
+                    El compromiso del nuestro nuevo empleado es clave para el éxito de esta empresa.
+                    Trabajará según el cronograma establecido de la empresa, garantizando así que cumplamos con nuestros plazos
+                    y objetivos de manera eficiente y efectiva.
+                </h3>
+                <br>
+            </div>
+            <br><br>
+            <div class="container">
+                <div class="border-top border-dark w-50 d-flex text-center p-3">
+                    <span>@item.NombapePers</span>
+                    <br>
+                    <span>Nuevo @item.oPuesto.NomPuesto</span>
+                </div>
+            </div>
+        </div>
+        
+    }
+    
+ 
+</body>
+

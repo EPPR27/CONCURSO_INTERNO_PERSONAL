@@ -165,19 +165,19 @@ public partial class SmvConcursoInternoContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("REFE_LABORAL");
 
-            entity.HasOne(d => d.IdClNavigation).WithMany(p => p.Personals)
+            entity.HasOne(d => d.oConocimientosLaborales).WithMany(p => p.Personals)
                 .HasForeignKey(d => d.IdCl)
                 .HasConstraintName("FK_ID_CL");
 
-            entity.HasOne(d => d.IdHbNavigation).WithMany(p => p.Personals)
+            entity.HasOne(d => d.oHabilidadesBlandas).WithMany(p => p.Personals)
                 .HasForeignKey(d => d.IdHb)
                 .HasConstraintName("FK_ID_HB");
 
-            entity.HasOne(d => d.IdPruebasMedicasNavigation).WithMany(p => p.Personals)
+            entity.HasOne(d => d.oPruebasMedicas).WithMany(p => p.Personals)
                 .HasForeignKey(d => d.IdPruebasMedicas)
                 .HasConstraintName("FK_ID_PRUEBAS_MEDICAS");
 
-            entity.HasOne(d => d.IdPuestoNavigation).WithMany(p => p.Personals)
+            entity.HasOne(d => d.oPuesto).WithMany(p => p.Personals)
                 .HasForeignKey(d => d.IdPuesto)
                 .HasConstraintName("FK_ID_PUESTO");
         });
@@ -247,7 +247,7 @@ public partial class SmvConcursoInternoContext : DbContext
                 .HasMaxLength(1)
                 .HasColumnName("respuesta_correcta");
 
-            entity.HasOne(d => d.IdPreguntaNavigation).WithMany(p => p.Pruebas)
+            entity.HasOne(d => d.oPregunta).WithMany(p => p.Pruebas)
                 .HasForeignKey(d => d.IdPregunta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PREGUNTA");

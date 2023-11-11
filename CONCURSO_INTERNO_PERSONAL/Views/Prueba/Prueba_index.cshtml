@@ -1,0 +1,89 @@
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.Prueba>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Prueba_index</title>
+    <link rel="stylesheet" href="/css/estilos_prueba.css">
+</head>
+
+
+
+
+<body>
+    <div class="contenedor_principal">
+        <div class="contenedor_prueba-conocimiento">
+            <div class="prueba_conocimiento-formulario">
+                <div class="prueba_formulario">
+                    <form asp-action="Pregunta_detalle" asp-controller="Prueba" method="post" class="formulario">
+                        <input type="hidden" />
+
+                        <label for="nombre">Pregunta</label>
+                        <input type="text" id="nombre" name="nombre" required>
+
+                        <label for="respuesta">Respuesta</label>
+                        <div class="form_respuesta">
+                            <select id="" name="" required>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                            <input class="form_respuesta-input" type="text" id="" name="" required>
+                            <input class="btn_agregar-respuesta" type="submit" value="Agregar">
+                        </div>
+                        <label for=""> Respuesta correcta</label>
+                        <select class="respuesta_correcta" id="" name="">
+                            <option value="a">Opción A</option>
+                            <option value="b"> Opción B</option>
+                            <option value="c"> Opción C</option>
+                            <option value="d"> Opción D</option>
+                        </select>
+                        <label for="puntaje">Puntaje</label>
+                        <input type="text" id="puntaje" name="puntaje" required>
+
+
+                        <input class="btn-Agregar" type="submit" value="Agregar">
+                    </form>
+                </div>
+
+                <div class="prueba_textArea">
+                    <span class="previsualizacion">Previsualizacion</span>
+                    <div class="text-area">
+                        <h5>Preguntas generadas:</h5>
+                        <div class="text_area-preguntas">
+
+
+                            @foreach (var item in Model)
+                            {
+
+                                <p class="pregunta"> <span> @item.IdPregunta ) </span>@item.oPregunta.Enunciado</p>
+                                <ul class="opciones">
+                                    <li class="opcion"> <span>a) </span>@item.oPregunta.OpcionA</li>
+                                    <li class="opcion"> <span>b) </span>@item.oPregunta.OpcionB</li>
+                                    <li class="opcion"> <span>c) </span>@item.oPregunta.OpcionC</li>
+                                    <li class="opcion"> <span>d) </span>@item.oPregunta.OpcionD</li>
+                                </ul>
+
+                            }
+
+
+                        </div>
+
+
+
+                    </div>
+                    <a class="btn-pdf" asp-action="MostrarPDFenPagina" target="_blank"> Descargar pdf</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
