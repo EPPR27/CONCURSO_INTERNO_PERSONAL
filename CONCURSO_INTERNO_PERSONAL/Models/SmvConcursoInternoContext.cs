@@ -121,19 +121,19 @@ public partial class SmvConcursoInternoContext : DbContext
             entity.Property(e => e.IdPuesto).HasColumnName("ID_PUESTO");
             entity.Property(e => e.IdSede).HasColumnName("ID_SEDE");
 
-            entity.HasOne(d => d.IdClNavigation).WithMany(p => p.PerfilPuestos)
+            entity.HasOne(d => d.oConocimientoslaborales).WithMany(p => p.PerfilPuestos)
                 .HasForeignKey(d => d.IdCl)
                 .HasConstraintName("FK_IDCL");
 
-            entity.HasOne(d => d.IdHbNavigation).WithMany(p => p.PerfilPuestos)
+            entity.HasOne(d => d.oHabilidades).WithMany(p => p.PerfilPuestos)
                 .HasForeignKey(d => d.IdHb)
                 .HasConstraintName("FK_IDHB");
 
-            entity.HasOne(d => d.IdPuestoNavigation).WithMany(p => p.PerfilPuestos)
+            entity.HasOne(d => d.oPuesto).WithMany(p => p.PerfilPuestos)
                 .HasForeignKey(d => d.IdPuesto)
                 .HasConstraintName("FK_IDPUESTO");
 
-            entity.HasOne(d => d.IdSedeNavigation).WithMany(p => p.PerfilPuestos)
+            entity.HasOne(d => d.oSede).WithMany(p => p.PerfilPuestos)
                 .HasForeignKey(d => d.IdSede)
                 .HasConstraintName("FK_IDSEDE");
         });
