@@ -1,54 +1,73 @@
 ﻿@model CONCURSO_INTERNO_PERSONAL.Models.VMPrueba.PruebaVM
 
-
 @{
-    ViewData["Title"] = "Pregunta_detalle";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h1>Pregunta_detalle</h1>
-<div class="row">
-    <div class="col-sm-4">
-
-        <form asp-action="Pregunta_detalle" asp-controller="Prueba" method="post">
 
 
-            <div class="mb-2">
-                <label class="form-label">Pregunta</label>
-                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.Enunciado" type="text" />
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Respuesta A</label>
-                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.OpcionA" type="text" />
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Respuesta B</label>
-                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.OpcionB" type="text" />
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Respuesta C</label>
-                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.OpcionC" type="text" />
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Respuesta D</label>
-                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.OpcionD" type="text" />
-            </div>
-            <div class="mb-2">
-                <label class="form-label" >Respuesta Corecta</label>
-                <input class="form-control form-control-sm" asp-for="Prueba.oPregunta.RespuestaCorrecta" type="text" />
-            </div>
-            <div class="mb-2">
-                <label class="form-label" asp-for="Prueba.Puntaje">Puntaje</label>
-                <input class="form-control form-control-sm" asp-for="Prueba.Puntaje" type="text" />
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/estilos_prueba_input.css">
+ 
+</head>
+<body>
+    <div>
+        <div>
+
+            <form asp-action="Pregunta_detalle" class="crear_preguntas" asp-controller="Prueba" method="post">
+
+
+                <div class="">
+                    <div class="crearPregunta_input">
+                        <label>Pregunta</label>
+                        <input asp-for="Prueba.oPregunta.Enunciado" type="text" />
+                    </div>
+                    <div class="crearPregunta_input">
+                        <label>Respuesta A</label>
+                        <input asp-for="Prueba.oPregunta.OpcionA" type="text" />
+                    </div>
+                    <div class="crearPregunta_input">
+                        <label>Respuesta B</label>
+                        <input asp-for="Prueba.oPregunta.OpcionB" type="text" />
+                    </div>
+                    <div class="crearPregunta_input">
+                        <label>Respuesta C</label>
+                        <input asp-for="Prueba.oPregunta.OpcionC" type="text" />
+                    </div>
+                    <div class="crearPregunta_input">
+                        <label>Respuesta D</label>
+                        <input asp-for="Prueba.oPregunta.OpcionD" type="text" />
+                    </div>
+                </div>
+
+                <div>
+                    <div class="crearPregunta_input">
+                        <label>Respuesta Corecta</label>
+                        <input f asp-for="Prueba.oPregunta.RespuestaCorrecta" type="text" />
+                    </div>
+                    <div class="crearPregunta_input">
+                        <label asp-for="Prueba.Puntaje">Puntaje</label>
+                        <input asp-for="Prueba.Puntaje" type="text" />
+                    </div>
+                </div>
 
 
 
 
-            <button type="submit" class="btn btn-primary">guardar</button>
-              
-              
-        </form>
 
+
+                <div>
+                    <button type="submit">Guardar</button>
+                </div>
+
+
+            </form>
+
+        </div>
     </div>
-</div>
+</body>
+</html>
