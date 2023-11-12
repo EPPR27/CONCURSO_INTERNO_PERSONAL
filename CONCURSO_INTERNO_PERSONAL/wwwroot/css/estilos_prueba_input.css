@@ -1,0 +1,87 @@
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: #D9D9D9;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.crear_preguntas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.2);
+    max-width: 1100px;
+    margin: 10px auto;
+    padding: 35px 0;
+    background: #f4f7f8;
+}
+
+.crearPregunta_input {
+    margin: 0 30px;
+}
+
+    .crearPregunta_input input {
+        background: rgba(255,255,255,0.1);
+        border: none;
+        font-size: 16px;
+        height: auto;
+        margin: 0;
+        outline: 0;
+        padding: 15px;
+        width: 400px;
+        border: 1px solid rgba(42, 44, 44, 0.342);
+        background-color: #feffff;
+        border-radius: 3px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+        margin-bottom: 30px;
+    }
+
+h1 {
+    margin: 0 0 30px 0;
+    text-align: center;
+}
+
+
+
+
+button {
+    padding: 12px 39px 12px 39px;
+    color: #FFF;
+    background-color: #4bc970;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 300px;
+    border: 1px solid #3ac162;
+    border-width: 1px 1px 3px;
+    box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    button:hover {
+        background-color: rgba(25, 209, 34, 0.78)
+    }
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+    label.light {
+        font-weight: 300;
+        display: inline;
+    }
