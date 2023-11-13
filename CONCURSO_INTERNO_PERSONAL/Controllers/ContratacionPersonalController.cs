@@ -21,6 +21,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             _converter = converter;
         }
 
+        [Authorize(Roles = "jefeRecursosHumanos")]
         public IActionResult VistaPDF()
         {
             List<Personal> lista = _SmvContext.Personals.Include(pt => pt.oPuesto).ToList();
@@ -87,15 +88,15 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             return View(lista);
         }
 
-        public async Task<IActionResult> MostrarDetalle(int idPersonal)
+        public async Task<IActionResult> MostrarDetalle(int Idpersonal)
         {
-            if (idPersonal == null || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
+            if (Idpersonal == null || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
             {
                 return NotFound();
             }
 
             var personal = await _SmvContext.Personals.Include(pt =>pt.oPuesto)
-                .FirstOrDefaultAsync(m => m.Idpersonal == idPersonal);
+                .FirstOrDefaultAsync(m => m.Idpersonal == Idpersonal);
             if (personal == null)
             {
                 return NotFound();
