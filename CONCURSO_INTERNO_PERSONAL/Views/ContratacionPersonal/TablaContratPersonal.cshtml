@@ -37,8 +37,9 @@
                                 <td>@item.NombapePers</td>
                                 <td>@item.oPuesto.NomPuesto</td>
                                 <td>@item.oPuesto.Sueldo</td>
-                                <td>
-                                    <a class="btn btn-success btn-sm" asp-action="MostrarDetalle" asp-controller="ContratacionPersonal" asp-route-Dni="@item.Dni"> Mostrar</a>
+                                <td>                                 
+                                    <a class="btn btn-sm btn-success" asp-controller="ContratacionPersonal" asp-action="MostrarPDFenPagina" asp-route-Idpersonal="@item.Idpersonal" target="_blank">Mostrar Contrato</a>
+                                    <a class="btn btn-sm btn-success" asp-controller="ContratacionPersonal" asp-action="DescargarPDF">Generar Contrato</a>
                                 </td>
                             </tr>
                         }
