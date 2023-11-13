@@ -301,7 +301,7 @@ public partial class SmvConcursoInternoContext : DbContext
             entity.Property(e => e.Idpersonal).HasColumnName("IDPERSONAL");
             entity.Property(e => e.SueldoSolic).HasColumnName("SUELDO_SOLIC");
 
-            entity.HasOne(d => d.IdpersonalNavigation).WithMany(p => p.SolicitudSueldos)
+            entity.HasOne(d => d.oPersonal).WithMany(p => p.SolicitudSueldos)
                 .HasForeignKey(d => d.Idpersonal)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_IDPERSONAL");

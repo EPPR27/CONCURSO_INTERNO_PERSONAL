@@ -13,7 +13,7 @@ public partial class SolicitudSueldo
 
     public string Descripcion { get; set; } = null!;
 
-    public virtual Personal IdpersonalNavigation { get; set; } = null!;
+    public virtual Personal oPersonal { get; set; } = null!;
 
     public virtual ICollection<PersonalPuesto> PersonalPuestos { get; set; } = new List<PersonalPuesto>();
 }
