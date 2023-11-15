@@ -1,0 +1,40 @@
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.PerfilPuesto>
+@{
+    ViewData["Title"] = "TablaPerfiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h5>Seleccion Personal</h5>
+    </div>
+    <div class="card-body w-100">
+        <table class="table table-dark table-striped text-center ">
+            <thead>
+                <tr>
+                    <th>Puesto</th>
+                    <th>Sueldo</th>
+                    <th>Sede</th>
+                    <th>Conocimiento Laboral</th>
+                    <th>Habilidad Blanda </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.oPuesto.NomPuesto</td>
+                        <td>@item.oPuesto.Sueldo</td>
+                        <td>@item.oSede.NomSede</td>
+                        <td>@item.oConocimientosLaborales.NomCl</td>
+                        <td>@item.oHabilidadesBlandas.NomHb</td>>
+                        <td>
+                            <a class="btn btn-success btn-sm p-2" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" asp-route-IdPersonal="@item.IdPp"><i class="bi bi-check-circle-fill"></i></a>
+                            <a class="btn btn-danger btn-sm p-2" asp-action="Eliminar" asp-controller="PerfilPuesto" asp-route-IdPersonal="@item.IdPp"><i class="bi bi-x-circle-fill"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

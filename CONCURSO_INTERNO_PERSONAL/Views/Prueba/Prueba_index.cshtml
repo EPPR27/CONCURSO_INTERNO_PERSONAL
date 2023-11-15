@@ -33,7 +33,7 @@
                             @foreach (var item in Model)
                             {
 
-                                <strong><p class="pregunta"> <span> @item.IdPregunta ) </span>@item.oPregunta.Enunciado</p></strong>
+                                <p class="pregunta"><strong> <span> @item.IdPregunta ) </span>@item.oPregunta.Enunciado</strong></p>
                                 <ul class="opciones">
                                     <li class="opcion"> <span>a) </span>@item.oPregunta.OpcionA</li>
                                     <li class="opcion"> <span>b) </span>@item.oPregunta.OpcionB</li>
@@ -52,7 +52,7 @@
                    
                 </div>
                 <div class="botones">
-                    <a class="btn-pdf" asp-action="Pregunta_detalle" target="_blank"> Generar Pregunta</a>
+                    <a class="btn-pdf" asp-action="Pregunta_detalle"> Generar Pregunta</a>
                     <a class="btn-pdf" asp-action="MostrarPDFenPagina" target="_blank"> Descargar pdf</a>
                 </div>
             </div>

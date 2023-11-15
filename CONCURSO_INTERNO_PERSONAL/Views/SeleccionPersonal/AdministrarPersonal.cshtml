@@ -1,0 +1,138 @@
+﻿@model CONCURSO_INTERNO_PERSONAL.Models.VMPersonal.PersonalVM;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="container-sm card border-3 m-5">
+        @if (Model.oPersonal.Idpersonal == 0)
+        {
+            <h1 class="p-2 mb-4">Generar Nuevo Postulante</h1>
+        }
+        else
+        {
+            <h1 class="p-2">Editar Datos del Postulante</h1>
+        }
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <form class="row g-6 needs-validation was-validated" novalidate asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal" method="post">
+                    <input type="hidden" asp-for="oPersonal.Idpersonal" />
+
+                    <div class="col-md-4 mb-5 position-relative">
+                        <label for="Idni" class="form-label fw-bold" asp-for="oPersonal.Dni">DNI</label>
+                        <input id="Idni" required class="form-control form-control-sm" value="" asp-for="oPersonal.Dni" type="text" maxlength="8" />
+                        <div class="invalid-tooltip">
+                            Ingresar DNI.
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 mb-5 position-relative">
+                        <label class="form-label fw-bold" asp-for="oPersonal.NombapePers">Postulante</label>
+                        <input class="form-control form-control-sm" asp-for="oPersonal.NombapePers" type="text" id="validationTooltip01" required />
+                        <div class="invalid-tooltip">
+                            Ingresar Nombre Postulante
+                        </div>
+                    </div>
+                <div class="col-md-6 mb-5 position-relative">
+                        <label class="form-label fw-bold" asp-for="oPersonal.IdPuesto">Puesto</label>
+                    <select class="form-select form-select-sm" asp-for="oPersonal.IdPuesto" asp-items="@Model.oListaPuesto" id="validationTooltip01" required>
+                            <option value="">----Seleccionar----</option>
+                        </select>
+                    <div class="invalid-tooltip">
+                        Seleccionar Puesto
+                    </div>
+                    </div>
+                <div class="col-md-6 mb-5 position-relative">
+                        <label class="form-label fw-bold" asp-for="oPersonal.IdHb">Habilidades Blandas</label>
+                    <select class="form-select form-select-sm" asp-for="oPersonal.IdHb" asp-items="@Model.oListaHabilidadesBlandas" id="validationTooltip01" required>
+                            <option value="">----Seleccionar----</option>
+                        </select>
+                    <div class="invalid-tooltip">
+                        Seleccionar Habilidad Blanda
+                    </div>
+                    </div>
+                <div class="mb-5 position-relative">
+                        <label class="form-label fw-bold" asp-for="oPersonal.IdCl">Conocimientos Laborales</label>
+                    <select class="form-select form-select-sm" asp-for="oPersonal.IdCl" asp-items="@Model.oListaConocimientosLaborales" id="validationTooltip01" required>
+                            <option value="">----Seleccionar----</option>
+                        </select>
+                    <div class="invalid-tooltip">
+                        Seleccionar Conocimiento Laboral
+                    </div>
+                    </div>
+                <div class="mb-5 position-relative">
+                        <label class="form-label fw-bold" asp-for="oPersonal.RefeLaboral">Referencias Laborales</label>
+                    <input class="form-control form-control-sm" asp-for="oPersonal.RefeLaboral" type="text" id="validationTooltip01" required />
+                    <div class="invalid-tooltip">
+                        Ingresar Referencias
+                    </div>
+                    </div>
+                <div class="col-md-6 mb-5 position-relative">
+                        <label class=" form-label fw-bold" asp-for="oPersonal.Ppc">Nota Prueba</label>
+                    <input class="form-control form-control-sm" asp-for="oPersonal.Ppc" type="number" id="validationTooltip01" required />
+                    <div class="invalid-tooltip">
+                        Ingresar Nota
+                    </div>
+                    </div>
+                <div class="col-md-6 mb-5 position-relative">
+                        <label class="form-label fw-bold" asp-for="oPersonal.Pcv">Nota CV</label>
+                    <input class="form-control form-control-sm" asp-for="oPersonal.Pcv" type="number" id="validationTooltip01" required />
+                    <div class="invalid-tooltip">
+                        Ingresar Nota
+                    </div>
+                    </div>
+                <div class="col-md-6 mb-5 position-relative">
+                        <label class="form-label fw-bold" asp-for="oPersonal.Pentrevista">Nota de Entrevista</label>
+                    <input class="form-control form-control-sm" asp-for="oPersonal.Pentrevista" type="number" id="validationTooltip01" required />
+                    <div class="invalid-tooltip">
+                        Ingresar Nota
+                    </div>
+                    </div>
+                <div class="col-md-6 mb-5 position-relative">
+                        <label class="form-label fw-bold" asp-for="oPersonal.IdPruebasMedicas">Pruebas Médicas</label>
+                    <select class="form-select form-select-sm" asp-for="oPersonal.IdPruebasMedicas" asp-items="@Model.oListaPruebasMedicas" id="validationTooltip01" required>
+                            <option value="">----Seleccionar----</option>
+                        </select>
+                    <div class="invalid-tooltip">
+                        Seleccionar Pruebas
+                    </div>
+                    </div>
+                    <div class="mb-2">
+
+                        @if (Model.oPersonal.Idpersonal == 0)
+                        {
+                            <button class="btn btn-primary btn-sm w-25" type="submit">Generar</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
+
+                        }
+                        <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+                    <a class="btn btn-secondary btn-sm" asp-action="TablaPerfiles" asp-controller="PerfilPuesto">Análisis Comparativo</a>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            'use strict'
+
+            // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Bucle sobre ellos y evitar el envío
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>

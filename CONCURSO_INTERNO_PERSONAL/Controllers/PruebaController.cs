@@ -61,7 +61,7 @@ namespace Prueba_CRUD.Controllers
 
             return File(archivoPDF, "application/pdf");
         }
-        [Authorize(Roles = "encargadoSeleccionPersonal")]
+        [Authorize(Roles = "encargadoSeleccionPersonal, admin")]
         public IActionResult Prueba_index()
         {
             List<Prueba> lista = _DBContext.Pruebas.Include(e => e.oPregunta).ToList();

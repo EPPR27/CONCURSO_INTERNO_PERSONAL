@@ -2,22 +2,17 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>validarPresupuesto</title>
-</head>
-<body>
+@if(Model != null && Model.Any())
+    {
     <div class="col-9 row justify-content-center">
+    
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>DNI</th>
                     <th>Nombre Personal</th>
                     <th>Sueldo Solicitado</th>
+                    <th>Motivo</th>
                     <th></th>
             </thead>
             <tbody>
@@ -27,6 +22,7 @@
                         <td>@item.oPersonal.Dni</td>
                         <td>@item.oPersonal.NombapePers</td>
                         <td>@item.SueldoSolic</td>
+                        <td>@item.Descripcion</td>
 
                         <td>
                             <a class="btn btn-primary btn-sm " asp-action="VistaPDFenPagina" asp-controller="Presupuesto" asp-route-IdSolicitud="@item.IdSolicSueldo"><i class="bi bi-check-circle-fill"></i></a>
@@ -41,6 +37,23 @@
             </tbody>
         </table>
     </div>
+    }
+    else
+    {
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 text-danger fw-bold">Aún no se ha Ingresado Ninguna Solicitud de sueldo</h1>
+        </div>
+        <div class="col-12">
+            <div class="d-flex justify-content-center align-items-center">
+                <video autoplay loop muted>
+                    <source src="~/imgCU/nullMono.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+        
+    }
 
     <script>
         function confirmarEliminacion(IdSolicSueldo) {
@@ -78,5 +91,3 @@
             });
         }
     </script>
-</body>
-</html>

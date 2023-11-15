@@ -1,6 +1,9 @@
 html {
   font-size: 14px;
 }
+.us{
+    font-family:"Roboto", sans-serif;
+}
 
 @media (min-width: 768px) {
   html {
@@ -16,15 +19,18 @@ html {
 body {
   margin-bottom: 60px;
 }
+.card-body h5{
+    font-family:"Roboto", sans-serif;
+}
 .tarjeta {
     width: 300px;
     height: 300px;
     transition: all 0.5s ease;
 }
-    .tarjeta:hover {
-        transform: scale(1);
-        width: 320px;
-    }
+.tarjeta:hover {
+    transform: scale(1);
+    padding:10px;
+}
 .inactive-card {
     filter: grayscale(100%);
     opacity: 0.5; 
@@ -34,4 +40,7 @@ body {
 .card-title{
     height:75%;
     transform: scale(1);
+}
+h5{
+    text-align:center;
 }
