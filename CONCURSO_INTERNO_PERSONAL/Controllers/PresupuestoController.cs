@@ -21,7 +21,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             _context = context;
             _converter = converter;
         }
-        [Authorize(Roles = "jefeFinanzas")]
+        [Authorize(Roles = "jefeFinanzas, admin")]
         [HttpGet]
         public IActionResult Solicitud_Presupuesto()
         {
@@ -53,7 +53,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
                 return Json(new { success = false, message = "Error al intentar eliminar la Solicitud de Sueldo." });
             }
         }
-        [Authorize(Roles = "jefeRecursosHumanos, analistaPresupuestal")]
+        [Authorize(Roles = "jefeRecursosHumanos, analistaPresupuestal, admin")]
         [HttpGet]
         public IActionResult SolicitarSueldo(int IdPersonal)
         {
@@ -69,20 +69,17 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             if (IdPersonal != 0)
             {
                 presupuestoVM.oSolicitudSueldo = _context.SolicitudSueldos.Find(IdPersonal);
-                presupuestoVM.detallesPersonalSeleccionado = _context.Personals.Find(IdPersonal);
             }
             return View(presupuestoVM);
-        }
-        [Authorize(Roles = "jefeRecursosHumanos, analistaPresupuestal")]
-        [HttpGet]
-        public IActionResult DetallesPersonal(int IdPersonal)
-        {
-            var detallesPersonal = _context.Personals.Find(IdPersonal);
-            return PartialView("_DetallesPersonalPartial", detallesPersonal);
         }
         [HttpPost]
         public IActionResult SolicitarSueldo(PresupuestoVM oPresupuestoVM)
         {
+            if (oPresupuestoVM.oSolicitudSueldo.SueldoSolic == 0 || oPresupuestoVM.oSolicitudSueldo.Descripcion == null)
+            {
+                ViewBag.Script = "Swal.fire('Aviso', 'Debe Ingresar El sueldo Solicitado', 'error');";
+                return RedirectToAction("SolicitarSueldo", "Presupuesto");
+            }
             if (oPresupuestoVM.oSolicitudSueldo.IdSolicSueldo == 0)
             {
                 _context.SolicitudSueldos.Add(oPresupuestoVM.oSolicitudSueldo);
@@ -95,14 +92,14 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
             return RedirectToAction("SolicitarSueldo", "Presupuesto");
         }
-        [Authorize(Roles = "jefeFinanzas")]
+        [Authorize(Roles = "jefeFinanzas, admin")]
         [HttpGet]
         public IActionResult VistaPDF(int IdSolicitud)
         {
             SolicitudSueldo List = _context.SolicitudSueldos.Find(IdSolicitud);
             return View(List);
         }
-        [Authorize(Roles = "jefeFinanzas")]
+        [Authorize(Roles = "jefeFinanzas, admin")]
         [HttpGet]
         public IActionResult VistaPDFenPagina()
         {

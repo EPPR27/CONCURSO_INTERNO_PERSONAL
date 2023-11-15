@@ -10,13 +10,13 @@ namespace CONCURSO_INTERNO_PERSONAL.Models.VMPerfil_Puesto
 
        
 
-        public List<SelectListItem> oConocimientoslaborales { get; set; }
+        public List<SelectListItem> listaCL { get; set; }
 
-        public List<SelectListItem> oHabilidades { get; set; }
+        public List<SelectListItem> listaHB { get; set; }
 
-        public List<SelectListItem> oPuesto { get; set; }
+        public List<SelectListItem> listaP { get; set; }
 
-        public List<SelectListItem> oSede { get; set; }
+        public List<SelectListItem> listaS { get; set; }
 
 
     }

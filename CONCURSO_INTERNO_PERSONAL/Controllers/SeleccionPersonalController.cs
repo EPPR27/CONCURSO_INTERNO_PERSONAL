@@ -17,7 +17,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         }
 
 
-        [Authorize(Roles = "comiteSeleccion, saoga")]
+        [Authorize(Roles = "comiteSeleccion, saoga, admin")]
         public IActionResult Index()
         {
             List<Personal> lista = _SmvContext.Personals
@@ -30,7 +30,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         }
 
         [HttpGet]
-        public IActionResult CBPruebasMedicas(int idpersonal)
+        public IActionResult AdministrarPersonal(int idpersonal)
         {
             PersonalVM oPersonalVM = new PersonalVM()
             {
@@ -65,7 +65,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         }
 
         [HttpPost]
-        public IActionResult CBPruebasMedicas(PersonalVM oPersonalVM)
+        public IActionResult AdministrarPersonal(PersonalVM oPersonalVM)
         {
             if (oPersonalVM.oPersonal.Idpersonal == 0)
             {

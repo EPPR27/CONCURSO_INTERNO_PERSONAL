@@ -1,0 +1,67 @@
+﻿@model CONCURSO_INTERNO_PERSONAL.Models.VMPerfil_Puesto.Perfil_Puesto_VM 
+
+@{
+    ViewData["Title"] = "Perfil_Puest_detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if(Model.oPerfilPuesto.IdPp == 0){
+    <h1>CREAR PERFIL DE PUESTO</h1>
+}
+else
+{
+    <h1>EDITAR PERFIL DE PUESTO</h1>
+}
+
+<div class="container-sm card border-3 m-4 p-5 d-flex justify-content-center align-items-center">
+    <div class="col-sm-4">
+
+        <form class="row was-validated" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" method="post" novalidate>
+            <input type="hidden" asp-for="oPerfilPuesto.IdPp" />
+            <div class="col-md-6 mb-5 position-relative">
+                <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdPuesto">Puesto</label>
+                <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdPuesto" asp-items="@Model.listaP" id="validationTooltip01" required>
+                    <option value="">----Seleccionar----</option>
+                </select>
+                <div class="invalid-tooltip">
+                    Seleccione un Puesto
+                </div>
+            </div>
+            <div class="col-md-6 mb-5 position-relative">
+                <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdSede">Sede</label>
+                <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdSede" asp-items="@Model.listaS" id="validationTooltip02" required>
+                    <option value="">----Seleccionar----</option>
+                </select>
+                <div class="invalid-tooltip">
+                    Seleccione una Sede
+                </div>
+            </div>
+            <div class="col-md-12 mb-5 position-relative">
+                <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdHb">Habilidades Blandas</label>
+                <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdHb" asp-items="@Model.listaHB" id="validationTooltip03" required>
+                    <option value="">----Seleccionar----</option>
+                </select>
+                <div class="invalid-tooltip">
+                    Seleccione una Habilidad Blanda
+                </div>
+            </div>
+            <div class="col-md-12 mb-5 position-relative">
+                <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdCl">Conocimientos Laborales</label>
+                <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdCl" asp-items="@Model.listaCL" id="validationTooltip04" required>
+                    <option value="">----Seleccionar----</option>
+                </select>
+                    <div class="invalid-tooltip">
+                        Selecione un Conocimiento laboral
+                    </div>
+            </div>
+            @if (Model.oPerfilPuesto.IdPp == 0)
+            {
+                <button type="submit" class="btn btn-primary">Crear</button>
+            }else{
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            }
+            
+        </form>
+
+    </div>
+</div>
+

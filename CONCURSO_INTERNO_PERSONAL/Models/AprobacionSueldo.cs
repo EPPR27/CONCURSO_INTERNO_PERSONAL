@@ -11,7 +11,7 @@ public partial class AprobacionSueldo
 
     public int? IdEstado { get; set; }
 
-    public virtual Personal? IdpersonalNavigation { get; set; }
+    public virtual Personal IdpersonalNavigation { get; set; }
 
-    public virtual EstadoSolic? IdEstadoNavigation { get; set; }
+    public virtual EstadoSolic IdEstadoNavigation { get; set; }
 }

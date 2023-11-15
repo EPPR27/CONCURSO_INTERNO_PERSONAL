@@ -17,7 +17,7 @@
             <h5>Seleccion Personal</h5>
         </div>
         <div class="card-body w-100">
-            <a class="btn btn-success btn-sm" asp-action="CBPruebasMedicas" asp-controller="SeleccionPersonal" asp-route-IdPersonal="0">Crear Personal</a>
+            <a class="btn btn-success btn-sm" asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal" asp-route-IdPersonal="0">Agregar Postulante<i class="bi bi-plus-circle-fill"></i></a>
             <hr />
             <table class="table table-dark table-striped text-center ">
                 <thead>
@@ -50,8 +50,8 @@
                             <td>@item.Pentrevista</td>
                             <td>@item.oPruebasMedicas.Estado</td>
                             <td>
-                                <a class="btn btn-success btn-sm p-2" asp-action="CBPruebasMedicas" asp-controller="SeleccionPersonal" asp-route-IdPersonal="@item.Idpersonal"> Editar </a>
-                                <a class="btn btn-danger btn-sm p-2" asp-action="Eliminar" asp-controller="SeleccionPersonal" asp-route-IdPersonal="@item.Idpersonal"> Eliminar</a>
+                                <a class="btn btn-success btn-sm p-2" asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal" asp-route-IdPersonal="@item.Idpersonal"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-danger btn-sm p-2" asp-action="Eliminar" asp-controller="SeleccionPersonal" asp-route-IdPersonal="@item.Idpersonal"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                     }

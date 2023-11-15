@@ -1,86 +1,98 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 
-    bool tieneAccesoPerfilPuesto = User.IsInRole("profesionalPerfil");
-    bool tieneAccesoPruebaConocimiento = User.IsInRole("encargadoSeleccionPersonal");
-    bool tieneAccesoSeleccionPersonal = User.IsInRole("comiteSeleccion") || User.IsInRole("saoga");
-    bool tieneAccesoContratacion = User.IsInRole("jefeRecursosHumanos");
-    bool tieneAccesoAdministrarPresupuesto = User.IsInRole("jefeRecursosHumanos") || User.IsInRole("analistaPresupuestal");
-    bool tieneAccesoValidarPresupuesto = User.IsInRole("jefeFinanzas");
+    bool tieneAccesoPerfilPuesto = User.IsInRole("profesionalPerfil") || User.IsInRole("admin");
+    bool tieneAccesoPruebaConocimiento = User.IsInRole("encargadoSeleccionPersonal") || User.IsInRole("admin");
+    bool tieneAccesoSeleccionPersonal = User.IsInRole("comiteSeleccion") || User.IsInRole("saoga") || User.IsInRole("admin");
+    bool tieneAccesoContratacion = User.IsInRole("jefeRecursosHumanos") || User.IsInRole("admin");
+    bool tieneAccesoAdministrarPresupuesto = User.IsInRole("jefeRecursosHumanos") || User.IsInRole("analistaPresupuestal") || User.IsInRole("admin");
+    bool tieneAccesoValidarPresupuesto = User.IsInRole("jefeFinanzas") || User.IsInRole("admin");
 }
 
 <div class="row row-cols-1 row-cols-md-3 g-5 align-items-center justify-content-center">
-    
+        
         <div class="col tarjeta @(tieneAccesoPerfilPuesto ? "" : "inactive-card")">
+            <a style="text-decoration:none" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto">
             <div class="card">
-                <img src="~/imgCU/perfilPuesto.webp" class="card-img-top" alt="imagen Perfil Puesto">
+                <img src="~/imgCU/perfil-Puesto.webp" class="card-img-top" alt="imagen Perfil Puesto">
                 <div class="card-body">
-                    <h5 class="card-title"><a style="text-decoration:none" asp-action="Index" asp-controller="PerfilPuesto">Perfil de Puesto</a></h5>
+                    <h5 class="card-title">Perfil de Puesto</h5>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">Responsable: Profesional Perfil de Puesto</small>
+                    <small class="text-dark">Resp: Profesional Perfil de Puesto</small>
                 </div>
             </div>
+            </a>
         </div>
 
         <div class="col tarjeta @(tieneAccesoPruebaConocimiento ? "" : "inactive-card" )">
+            <a style="text-decoration:none" asp-action="Prueba_index" asp-controller="Prueba">
             <div class="card">
-                <img src="~/imgCU/pruebaConocimiento.webp" class="card-img-top" alt="imagen Prueba Conocimiento">
+                <img src="~/imgCU/prueba-Conocimiento.webp" class="card-img-top" alt="imagen Prueba Conocimiento">
                 <div class="card-body">
-                    <h5 class="card-title"><a style="text-decoration:none" asp-action="Prueba_index" asp-controller="Prueba">Prueba Conocimiento</a></h5>
+                    <h5 class="card-title">Prueba Conocimiento</h5>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">Responsable: Encargado de Selección de Personal de RR.HH.</small>
+                    <small class="text-dark">Resp: Encargado de RR.HH.</small>
                 </div>
             </div>
+            </a>
         </div>
 
         <div class="col tarjeta @(tieneAccesoSeleccionPersonal ? "" : "inactive-card")">
+        <a style="text-decoration:none" asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal">
             <div class="card">
-                <img src="~/imgCU/seleccionPersonal.webp" class="card-img-top" alt="imagen seleccion Personal">
+                <img src="~/imgCU/seleccion-Personal.webp" class="card-img-top" alt="imagen seleccion Personal">
                 <div class="card-body">
-                    <h5 class="card-title"><a style="text-decoration:none" asp-action="Index" asp-controller="SeleccionPersonal">selección de Personal</a></h5>
+                    <h5 class="card-title">selección de Personal</h5>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">Responsables: Comité de Selección y SAOGA </small>
+                    <small class="text-dark">Resp: Comité Selección y SAOGA </small>
                 </div>
             </div>
+            </a>
         </div>
     
         <div class="col tarjeta @(tieneAccesoContratacion ? "" : "inactive-card")">
+            <a style="text-decoration:none" asp-action="TablaContratPersonal" asp-controller="ContratacionPersonal">
             <div class="card">
-                <img src="~/imgCU/contratacion.webp" class="card-img-top" alt="imagen Contratacion">
+                <img src="~/imgCU/contratacion1.webp" class="card-img-top" alt="imagen Contratacion">
                 <div class="card-body">
-                    <h5 class="card-title"><a style="text-decoration:none" asp-action="TablaContratPersonal" asp-controller="ContratacionPersonal">Contratación de Personal</a></h5>
+                    <h5 class="card-title">Contratación de Personales</h5>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">Responsable: Jefe de la Unidad de RR.HH.</small>
+                    <small class="text-dark">Resp: Jefe de RR.HH.</small>
                 </div>
             </div>
+            </a>
         </div>
     
         <div class="col tarjeta @(tieneAccesoAdministrarPresupuesto ? "" : "inactive-card")">
+            <a style="text-decoration:none" asp-action="SolicitarSueldo" asp-controller="Presupuesto">
             <div class="card">
-                <img src="~/imgCU/administrarPresupuesto.webp" class="card-img-top" alt="imagen Administrar Presupuesto">
+                <img src="~/imgCU/administrar-Presupuesto.webp" class="card-img-top" alt="imagen Administrar Presupuesto">
                 <div class="card-body">
-                <h5 class="card-title"><a style="text-decoration:none" asp-action="SolicitarSueldo" asp-controller="Presupuesto">Administrar Presupuesto</a></h5>
+                    <h5 class="card-title">Administración de Presupuesto</h5>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">Responsables: Jefe de la Unidad de RR.HH. y Analista Ejecución Presupuestal</small>
+                    <small class="text-dark">Resp: Jefe de RR.HH. y Analista</small>
                 </div>
             </div>
+            </a>
         </div>
     
         <div class="col tarjeta @(tieneAccesoValidarPresupuesto ? "" : "inactive-card")">
+            <a style="text-decoration:none" asp-action="Solicitud_Presupuesto" asp-controller="Presupuesto">
             <div class="card">
-                <img src="~/imgCU/validacionPresupuesto.webp" class="card-img-top" alt="Imagen Validacion Presupuesto">
+                <img src="~/imgCU/validacion-Presupuesto.webp" class="card-img-top" alt="Imagen Validacion Presupuesto">
                 <div class="card-body">
-                    <h5 class="card-title"><a style="text-decoration:none" asp-action="Solicitud_Presupuesto" asp-controller="Presupuesto">Validar Presupuesto</a></h5>
+                    <h5 class="card-title">Validación para Presupuesto</h5>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">Responsable: Jefe de la Unidad de Finanzas</small>
+                    <small class="text-dark">Resp: Jefe de Finanzas</small>
                 </div>
             </div>
+            </a>            
         </div>
     
 </div>

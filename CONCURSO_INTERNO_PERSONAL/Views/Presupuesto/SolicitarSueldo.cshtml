@@ -10,29 +10,27 @@
     <div class="row justify-content-center">
         <div class="col-sm-4">
             <form asp-action="SolicitarSueldo" asp-controller="Presupuesto" method="post" class="was-validated" novalidate>
-                <input type="hidden" asp-for="oSolicitudSueldo.IdSolicSueldo" />
-                <div class="mb-2">
+                <input type="hidden" asp-for="oSolicitudSueldo.IdSolicSueldo"/>
+                <div class="mb-5 position-relative">
                     <label class="form-label fw-bold" asp-for="oSolicitudSueldo.Idpersonal">Dni Postulante</label>
-                    <select class="form-select form-select-sm" asp-for="oSolicitudSueldo.Idpersonal" asp-items="@Model.oListaPersonal" onchange="cargarDetallesPersonal()" id="Idpersonal" required>
+                    <select class="form-select form-select-sm" asp-for="oSolicitudSueldo.Idpersonal" asp-items="@Model.oListaPersonal" id="validationTooltip01" required>
                         <option value="">----Seleccionar----</option>
                     </select>
-                    <div class="invalid-feedback">
-                        Por Favor Ingresar el sueldo solicitado
+                    <div class="invalid-tooltip">
+                        Se requiere seleccionar un postulante
                     </div>
                 </div>
-                <div class="mb-2" id="DetallesPersonalContainer">
-                </div>
-                <div class="mb-2">
+                <div class="mb-5 position-relative">
                     <label for="validationTooltip1" class="form-label fw-bold" asp-for="oSolicitudSueldo.SueldoSolic">Sueldo Solicitado</label>
-                    <input class="form-control form-control-sm" id="validationTooltip1" asp-for="oSolicitudSueldo.SueldoSolic" value="" type="text" required />
-                    <div class="invalid-feedback">
+                    <input class="form-control form-control-sm" id="validationTooltip02" asp-for="oSolicitudSueldo.SueldoSolic" value="" type="text" required />
+                    <div class="invalid-tooltip">
                         Por Favor Ingresar el sueldo solicitado
                     </div>
                 </div>
-                <div class="mb-2">
+                <div class="mb-5 position-relative">
                     <label for="validationTooltip1" class="form-label fw-bold" asp-for="oSolicitudSueldo.Descripcion">Motivo:</label>
-                    <input class="form-control form-control-sm" id="validationTooltip1" asp-for="oSolicitudSueldo.Descripcion" type="text" required />
-                    <div class="invalid-feedback">
+                    <input class="form-control form-control-sm" id="validationTooltip03" asp-for="oSolicitudSueldo.Descripcion" type="text" required />
+                    <div class="invalid-tooltip">
                         Por Favor Ingresar un motivo
                     </div>
                 </div>
@@ -48,12 +46,3 @@
         </div>
     </div>
 </div>
-<script>
-    function cargarDetallesPersonal() {
-        var IdPersonal = $("#Idpersonal").val();
-
-        $.get("/Presupuesto/DetallesPersonal/" + IdPersonal, function (data) {
-            $("#DetallesPersonalContainer").html(data);
-        });
-    }
-</script>

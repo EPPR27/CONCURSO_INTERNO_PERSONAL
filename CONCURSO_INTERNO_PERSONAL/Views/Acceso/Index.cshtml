@@ -10,24 +10,24 @@
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/login.css"/>
 </head>
-<body>
-    <div class="row mt-5">
-        <div class="col-sm-4 offset-sm-4">
-
+<body class="bg d-flex justify-content-center align-items-center">
+    <div class="container-fluid">
+        <div class="card offset-sm-4">
+            <label class="login">Iniciar Sesión</label>
             <form asp-controller="Acceso" asp-action="Index" method="post">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" asp-for="Correo">
+                <div class="inputBox mb-3">
+                    <input type="email" asp-for="Correo" required="required">
+                    <span class="user">Correo</span>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" asp-for="Clave">
+                <div class="inputBox mb-3">
+                    <input type="password" asp-for="Clave" required="required">
+                    <span>Contraseña</span>
                 </div>
-                <button type="submit" class="btn btn-primary">Ingresar</button>
+
+                <button class="enter" type="submit">Ingresar</button>
             </form>
-
-
         </div>
     </div>
 </body>

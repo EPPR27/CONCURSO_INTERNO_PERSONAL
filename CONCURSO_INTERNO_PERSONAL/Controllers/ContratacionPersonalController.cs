@@ -21,7 +21,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             _converter = converter;
         }
 
-        [Authorize(Roles = "jefeRecursosHumanos")]
+        [Authorize(Roles = "jefeRecursosHumanos, admin")]
         public IActionResult VistaPDF()
         {
             List<Personal> lista = _SmvContext.Personals.Include(pt => pt.oPuesto).ToList();
@@ -81,7 +81,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             return File(archivoPDF, "application/pdf", nombrePDF);
         }
 
-        [Authorize(Roles = "jefeRecursosHumanos")]
+        [Authorize(Roles = "jefeRecursosHumanos, admin")]
         public IActionResult TablaContratPersonal()
         {
             List<Personal> lista = _SmvContext.Personals.Include(pt => pt.oPuesto).ToList();
@@ -90,7 +90,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
         public async Task<IActionResult> MostrarDetalle(int Idpersonal)
         {
-            if (Idpersonal == null || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
+            if (Idpersonal == 0 || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
             {
                 return NotFound();
             }
