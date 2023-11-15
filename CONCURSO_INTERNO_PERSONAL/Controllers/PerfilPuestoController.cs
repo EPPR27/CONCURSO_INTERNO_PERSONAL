@@ -85,5 +85,26 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
                 .ToList();
             return View(lista);
         }
+        public IActionResult Eliminar(int IdPp)
+        {
+            try
+            {
+                PerfilPuesto oPerfilPuesto = _DBContext.PerfilPuestos.Find(IdPp);
+
+                if (oPerfilPuesto == null)
+                {
+                    return NotFound();
+                }
+
+                _DBContext.PerfilPuestos.Remove(oPerfilPuesto);
+                _DBContext.SaveChanges();
+
+                return Json(new { success = true, message = "Eliminación exitosa" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error al intentar eliminar El Perfil de Puesto." });
+            }
+        }
     }
 }

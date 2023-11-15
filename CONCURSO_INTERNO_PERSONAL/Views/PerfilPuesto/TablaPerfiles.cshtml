@@ -24,13 +24,17 @@
                 {
                     <tr>
                         <td>@item.oPuesto.NomPuesto</td>
-                        <td>@item.oPuesto.Sueldo</td>
+                        <td>S/. @item.oPuesto.Sueldo</td>
                         <td>@item.oSede.NomSede</td>
                         <td>@item.oConocimientosLaborales.NomCl</td>
                         <td>@item.oHabilidadesBlandas.NomHb</td>>
                         <td>
-                            <a class="btn btn-success btn-sm p-2" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" asp-route-IdPersonal="@item.IdPp"><i class="bi bi-check-circle-fill"></i></a>
-                            <a class="btn btn-danger btn-sm p-2" asp-action="Eliminar" asp-controller="PerfilPuesto" asp-route-IdPersonal="@item.IdPp"><i class="bi bi-x-circle-fill"></i></a>
+                            <a class="btn btn-success btn-sm p-2" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" asp-route-IdPersonal="@item.IdPp">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm p-2" onclick="confirmarEliminacion('@item.IdPp')">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </a>
                         </td>
                     </tr>
                 }
@@ -38,3 +42,39 @@
         </table>
     </div>
 </div>
+<script>
+    function confirmarEliminacion(IdPp) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                eliminarRegistro(IdPp);
+            }
+        });
+    }
+
+    function eliminarRegistro(IdPp) {
+        $.ajax({
+            url: '/PerfilPuesto/Eliminar',
+            type: 'POST',
+            data: { IdPp: IdPp },
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire('Eliminado!', response.message, 'success');
+                    location.reload();
+                } else {
+                    Swal.fire('Error', response.message, 'error');
+                }
+            },
+            error: function () {
+                Swal.fire('Error', 'Error al intentar eliminar el perfil de puesto.', 'error');
+            }
+        });
+    }
+</script>
