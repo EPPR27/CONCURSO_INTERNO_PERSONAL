@@ -35,12 +35,14 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-
+                
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                return View();
+
+                TempData["ErrorMessage"] = "Correo o contraseña incorrectos.";
+                return RedirectToAction("Index","Acceso");
             }
 
         }
