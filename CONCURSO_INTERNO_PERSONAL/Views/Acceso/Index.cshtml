@@ -18,7 +18,7 @@
     <div class="container-fluid">
         <div class="card offset-sm-4">
             <label class="login">Iniciar Sesión</label>
-            <form asp-controller="Acceso" asp-action="Index" method="post" id="loginForm">
+            <form asp-controller="Acceso" asp-action="Index" method="post">
                 <div class="inputBox mb-3">
                     <input type="email" asp-for="Correo" required="required">
                     <span class="user">Correo</span>
@@ -38,10 +38,8 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Obtén el mensaje de TempData (puedes pasarlo desde el controlador)
             var errorMessage = '@Html.Raw(TempData["ErrorMessage"])';
 
-            // Verifica si hay un mensaje de error y muestra el SweetAlert
             if (errorMessage !== '') {
                 Swal.fire({
                     icon: 'error',

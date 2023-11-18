@@ -1,6 +1,7 @@
 ﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.Prueba>
 @{
     Layout = null;
+    int _i = 0;
 }
 
 <!DOCTYPE html>
@@ -9,26 +10,49 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>VistaParaPDF</title>
+    <style>
 
-    <link rel="stylesheet" href="/css/estilos_pdf-Prueba.css">
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        img {
+            width: 150px;
+            height: 70px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        li {
+            margin-left: 1px;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 
     
     <div class="container">
-
+            <img src="~/imgCU/logo.png" />
+            <h1>PRUEBA DE CONOCIMIENTO</h1>
         @foreach (var item in Model)
         {
-
-            <div class="pregunta">
-                    <p> <strong> Pregunta @item.IdPregunta : </strong></p>
-                    <p>@item.oPregunta.Enunciado</p>
-                    <ul class="opciones">
-                        <li class="opcion"> <span>a) </span>@item.oPregunta.OpcionA</li>
-                        <li class="opcion"> <span>b) </span>@item.oPregunta.OpcionB</li>
-                        <li class="opcion"> <span>c) </span>@item.oPregunta.OpcionC</li>
-                        <li class="opcion"> <span>d) </span>@item.oPregunta.OpcionD</li>
-                    </ul>
+            _i++;
+            <div>
+                <p>
+                    <span style="font-size:20px;font-weight:bold;"> Pregunta @_i: </span>
+                    <span style="font-size:20px;">@item.oPregunta.Enunciado</span>
+                    <span> (puntaje: @item.Puntaje pto)</span>
+                </p>
+                <ol type="a" style="list-style-type:'a)'">
+                        <li>@item.oPregunta.OpcionA</li>
+                        <li>@item.oPregunta.OpcionB</li>
+                        <li>@item.oPregunta.OpcionC</li>
+                        <li>@item.oPregunta.OpcionD</li>
+                    </ol>
                 </div>
          
 

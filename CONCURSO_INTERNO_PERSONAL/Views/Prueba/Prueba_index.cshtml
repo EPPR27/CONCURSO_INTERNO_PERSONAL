@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int _i = 0;
 }
 
 <!DOCTYPE html>
@@ -21,38 +22,31 @@
     <div class="contenedor_principal">
         <div class="contenedor_prueba-conocimiento">
             <div class="prueba_conocimiento-formulario">
-               
-
-                <div class="prueba_textArea">
+               <div class="prueba_textArea">
                     <span class="previsualizacion">Previsualizacion</span>
                     <div class="text-area">
                         <h5>Preguntas generadas:</h5>
                         <div class="text_area-preguntas">
-
-
+                            
                             @foreach (var item in Model)
                             {
-
-                                <p class="pregunta"><strong> <span> @item.IdPregunta ) </span>@item.oPregunta.Enunciado</strong></p>
-                                <ul class="opciones">
-                                    <li class="opcion"> <span>a) </span>@item.oPregunta.OpcionA</li>
-                                    <li class="opcion"> <span>b) </span>@item.oPregunta.OpcionB</li>
-                                    <li class="opcion"> <span>c) </span>@item.oPregunta.OpcionC</li>
-                                    <li class="opcion"> <span>d) </span>@item.oPregunta.OpcionD</li>
-                                </ul>
+                                _i++;
+                                <p class="pregunta"><strong> <span> @_i. </span>@item.oPregunta.Enunciado</strong></p>
+                                <ol type="a" style="list-style-type:'a)'">
+                                    <li class="opcion">@item.oPregunta.OpcionA</li>
+                                    <li class="opcion">@item.oPregunta.OpcionB</li>
+                                    <li class="opcion">@item.oPregunta.OpcionC</li>
+                                    <li class="opcion">@item.oPregunta.OpcionD</li>
+                                </ol>
 
                             }
-
-
                         </div>
-
-
-
                     </div>
                    
                 </div>
                 <div class="botones">
                     <a class="btn-pdf" asp-action="Pregunta_detalle"> Generar Pregunta</a>
+                    <a class="btn-pdf" asp-action="EliminarTodasLasPreguntas"> Eliminar todo</a>
                     <a class="btn-pdf" asp-action="MostrarPDFenPagina" target="_blank"> Descargar pdf</a>
                 </div>
             </div>

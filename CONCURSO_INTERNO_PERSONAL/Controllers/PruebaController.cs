@@ -23,11 +23,6 @@ namespace Prueba_CRUD.Controllers
 
             _converter = converter;
         }
-
-
-
-
-
         public IActionResult VistaParaPDF()
         {
             List<Prueba> lista = _DBContext.Pruebas.Include(e => e.oPregunta).ToList();
@@ -55,7 +50,6 @@ namespace Prueba_CRUD.Controllers
                 }
 
             };
-
             var archivoPDF = _converter.Convert(pdf);
 
 
@@ -71,10 +65,7 @@ namespace Prueba_CRUD.Controllers
         [HttpGet]
         public IActionResult Pregunta_detalle()
         {
-
-
             return View();
-
         }
 
         [HttpPost]
@@ -92,10 +83,6 @@ namespace Prueba_CRUD.Controllers
                 OpcionD = oPruebaVM.Prueba.oPregunta.OpcionD,
                 RespuestaCorrecta = oPruebaVM.Prueba.oPregunta.RespuestaCorrecta
 
-
-
-
-
             };
 
             var pru = new Prueba
@@ -111,15 +98,15 @@ namespace Prueba_CRUD.Controllers
             await _DBContext.Pruebas.AddAsync(pru);
 
             _DBContext.SaveChanges();
-
-
-
-
             return RedirectToAction("Prueba_index", "Prueba");
 
+        }
+        public IActionResult EliminarTodasLasPreguntas()
+        {
+            _DBContext.Pruebas.RemoveRange(_DBContext.Pruebas.ToList());
+            _DBContext.SaveChanges();
 
-
-
+            return RedirectToAction("Prueba_index", "Prueba");
         }
     }
 
