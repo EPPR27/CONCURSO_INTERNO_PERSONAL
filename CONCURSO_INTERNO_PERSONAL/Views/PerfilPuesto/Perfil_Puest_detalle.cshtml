@@ -53,12 +53,17 @@ else
                         Selecione un Conocimiento laboral
                     </div>
             </div>
-            @if (Model.oPerfilPuesto.IdPp == 0)
-            {
-                <button type="submit" class="btn btn-primary">Crear</button>
-            }else{
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            }
+            <div class="row">
+                @if (Model.oPerfilPuesto.IdPp == 0)
+                {
+                    <button type="submit" class="col-6 btn btn-primary">Crear</button>
+                }
+                else
+                {
+                    <button type="submit" class="col-6 btn btn-primary">Guardar</button>
+                }
+                <a class="col-5 ms-4 btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+            </div>
             
         </form>
 

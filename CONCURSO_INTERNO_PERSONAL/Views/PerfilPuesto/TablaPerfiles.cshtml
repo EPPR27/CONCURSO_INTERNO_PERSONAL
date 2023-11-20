@@ -5,10 +5,10 @@
 }
 <div class="card">
     <div class="card-header">
-        <h5>Seleccion Personal</h5>
+        <h5>Perfiles de Puestos</h5>
     </div>
-    <div class="card-body w-100">
-        <table class="table table-dark table-striped text-center ">
+    <div class="card-body w-100 m-0 p-0">
+        <table class="table table-dark table-striped text-center m-0">
             <thead>
                 <tr>
                     <th>Puesto</th>
@@ -27,10 +27,10 @@
                         <td>S/. @item.oPuesto.Sueldo</td>
                         <td>@item.oSede.NomSede</td>
                         <td>@item.oConocimientosLaborales.NomCl</td>
-                        <td>@item.oHabilidadesBlandas.NomHb</td>>
+                        <td>@item.oHabilidadesBlandas.NomHb</td>
                         <td>
-                            <a class="btn btn-success btn-sm p-2" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" asp-route-IdPersonal="@item.IdPp">
-                                <i class="bi bi-check-circle-fill"></i>
+                            <a class="btn btn-primary btn-sm p-2" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" asp-route-IdPerfil="@item.IdPp">
+                                <i class="bi bi-pencil"></i>
                             </a>
                             <a class="btn btn-danger btn-sm p-2" onclick="confirmarEliminacion('@item.IdPp')">
                                 <i class="bi bi-x-circle-fill"></i>
@@ -41,7 +41,7 @@
             </tbody>
         </table>
     </div>
-    <a class="btn btn-dark btn-sm" asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal">Volver</a>
+    <a class="btn btn-secondary btn-sm" asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal"><i class="bi bi-arrow-return-left fs-5"></i></a>
 </div>
 <script>
     function confirmarEliminacion(IdPp) {

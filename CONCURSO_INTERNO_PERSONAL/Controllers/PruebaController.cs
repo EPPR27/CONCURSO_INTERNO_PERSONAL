@@ -111,7 +111,7 @@ namespace Prueba_CRUD.Controllers
             _DBContext.Pruebas.RemoveRange(_DBContext.Pruebas.ToList());    
             _DBContext.SaveChanges();
 
-            return RedirectToAction("Prueba_index", "Prueba");
+            return Json(new { success = true, message = "Eliminación exitosa" });
         }
     }
 

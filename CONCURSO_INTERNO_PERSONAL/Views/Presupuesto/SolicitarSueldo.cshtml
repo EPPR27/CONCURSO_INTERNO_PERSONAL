@@ -5,7 +5,7 @@
 }
 <div class="container-sm card border-3 m-5">
 
-    <h1 class="p-2">Generar Solicitud de Presupuesto</h1>
+    <h1 class="p-2">Ingresar Solicitud de Sueldo</h1>
 
     <div class="row justify-content-center">
         <div class="col-sm-4">
@@ -22,14 +22,14 @@
                 </div>
                 <div class="mb-5 position-relative">
                     <label for="validationTooltip1" class="form-label fw-bold" asp-for="oSolicitudSueldo.SueldoSolic">Sueldo Solicitado</label>
-                    <input class="form-control form-control-sm" id="validationTooltip02" asp-for="oSolicitudSueldo.SueldoSolic" value="" type="text" required />
+                    <input class="form-control form-control-sm" id="validationTooltip02" placeholder="S/." asp-for="oSolicitudSueldo.SueldoSolic" value="" type="text" required />
                     <div class="invalid-tooltip">
                         Por Favor Ingresar el sueldo solicitado
                     </div>
                 </div>
                 <div class="mb-5 position-relative">
                     <label for="validationTooltip1" class="form-label fw-bold" asp-for="oSolicitudSueldo.Descripcion">Motivo:</label>
-                    <input class="form-control form-control-sm" id="validationTooltip03" asp-for="oSolicitudSueldo.Descripcion" type="text" required />
+                    <input class="form-control form-control-sm" id="validationTooltip03" placeholder="logro(s) alcanzado(s)" asp-for="oSolicitudSueldo.Descripcion" type="text" required />
                     <div class="invalid-tooltip">
                         Por Favor Ingresar un motivo
                     </div>
@@ -38,7 +38,7 @@
 
                     <button class="btn btn-primary btn-sm w-25" type="submit">Solicitar</button>
 
-                    <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+                    <a class="btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
 
                 </div>
 
