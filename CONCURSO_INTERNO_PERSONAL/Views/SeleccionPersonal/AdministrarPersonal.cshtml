@@ -11,7 +11,7 @@
     <div class="container-sm card border-3 m-5">
     @if (Model.oPersonal.Idpersonal == 0)
     {
-        <h1 class="p-2 mb-4">Generar Nuevo Postulante</h1>
+        <h1 class="p-2 mb-4">Ingresar Nuevo Postulante</h1>
     }
     else
     {
@@ -32,7 +32,7 @@
 
                 <div class="col-md-8 mb-5 position-relative">
                     <label class="form-label fw-bold">Postulante</label>
-                    <input class="form-control form-control-sm" asp-for="oPersonal.NombapePers" type="text" id="validationTooltip07" required />
+                    <input class="form-control form-control-sm" asp-for="oPersonal.NombapePers" placeholder="Nombre Apellido" type="text" id="validationTooltip07" required />
                     <div class="invalid-tooltip">
                         Ingresar Nombre Postulante
                     </div>
@@ -70,7 +70,7 @@
 
                 <div class="mb-5 position-relative">
                     <label class="form-label fw-bold">Referencias Laborales</label>
-                    <input class="form-control form-control-sm" asp-for="oPersonal.RefeLaboral" type="text" id="validationTooltip03" required />
+                    <input class="form-control form-control-sm" asp-for="oPersonal.RefeLaboral" placeholder="EMPRESA S.A." type="text" id="validationTooltip03" required />
                     <div class="invalid-tooltip">
                         Ingresar Referencias
                     </div>
@@ -110,8 +110,8 @@
                         <button class="btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
 
                     }
-                        <a class="btn btn-dark btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
-                    <a class="btn btn-secondary btn-sm" asp-action="TablaPerfiles" asp-controller="PerfilPuesto">Análisis Comparativo</a>
+                        <a class="btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+                    <a class="btn btn-dark btn-sm" asp-action="TablaPerfiles" asp-controller="PerfilPuesto">Análisis Comparativo</a>
 
                 </div>
 
