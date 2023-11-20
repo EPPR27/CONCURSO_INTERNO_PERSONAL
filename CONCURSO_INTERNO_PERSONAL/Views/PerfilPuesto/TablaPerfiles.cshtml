@@ -1,0 +1,81 @@
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.PerfilPuesto>
+@{
+    ViewData["Title"] = "TablaPerfiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h5>Seleccion Personal</h5>
+    </div>
+    <div class="card-body w-100">
+        <table class="table table-dark table-striped text-center ">
+            <thead>
+                <tr>
+                    <th>Puesto</th>
+                    <th>Sueldo</th>
+                    <th>Sede</th>
+                    <th>Conocimiento Laboral</th>
+                    <th>Habilidad Blanda </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.oPuesto.NomPuesto</td>
+                        <td>S/. @item.oPuesto.Sueldo</td>
+                        <td>@item.oSede.NomSede</td>
+                        <td>@item.oConocimientosLaborales.NomCl</td>
+                        <td>@item.oHabilidadesBlandas.NomHb</td>>
+                        <td>
+                            <a class="btn btn-success btn-sm p-2" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" asp-route-IdPersonal="@item.IdPp">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm p-2" onclick="confirmarEliminacion('@item.IdPp')">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-dark btn-sm" asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal">Volver</a>
+</div>
+<script>
+    function confirmarEliminacion(IdPp) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                eliminarRegistro(IdPp);
+            }
+        });
+    }
+
+    function eliminarRegistro(IdPp) {
+        $.ajax({
+            url: '/PerfilPuesto/Eliminar',
+            type: 'POST',
+            data: { IdPp: IdPp },
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire('Eliminado!', response.message, 'success');
+                    location.reload();
+                } else {
+                    Swal.fire('Error', response.message, 'error');
+                }
+            },
+            error: function () {
+                Swal.fire('Error', 'Error al intentar eliminar el perfil de puesto.', 'error');
+            }
+        });
+    }
+</script>

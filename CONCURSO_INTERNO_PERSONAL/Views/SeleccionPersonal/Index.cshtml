@@ -1,6 +1,6 @@
-﻿
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.Personal>
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -9,8 +9,92 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Seleccion Personal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
-    <h1>Seleccion Personal</h1>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-center">Seleccion Personal</h2>
+        </div>
+        <div class=" w-100">
+            <table class="table table-dark table-striped text-center m-0">
+                <thead>
+                    <tr>
+                        <th>DNI</th>
+                        <th>Personal</th>
+                        <th>Puesto</th>
+                        <th>Habilidades Blandas</th>
+                        <th>Conocimientos Laborales</th>
+                        <th>Referencias Laborales</th>
+                        <th>Puntaje de Prueba de Conocimientos</th>
+                        <th>Puntaje CV</th>
+                        <th>Puntaje Entrevista</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Dni</td>
+                            <td>@item.NombapePers</td>
+                            <td>@item.oPuesto.NomPuesto</td>
+                            <td>@item.oHabilidadesBlandas.NomHb</td>
+                            <td>@item.oConocimientosLaborales.NomCl</td>
+                            <td>@item.RefeLaboral</td>
+                            <td>@item.Ppc</td>
+                            <td>@item.Pcv</td>
+                            <td>@item.Pentrevista</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm p-2" asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal" asp-route-IdPersonal="@item.Idpersonal"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-danger btn-sm p-2" onclick="confirmarEliminacion('@item.Idpersonal')"><i class="bi bi-trash3"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-secondary btn-sm" onclick="history.back()">
+            <i class="bi bi-arrow-return-left fs-5"></i>
+        </a>
+    </div>
+    <script>
+        function confirmarEliminacion(Idpersonal) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "No podrás revertir esto",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminarlo'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    eliminarRegistro(Idpersonal);
+                }
+            });
+        }
+
+        function eliminarRegistro(Idpersonal) {
+            $.ajax({
+                url: '/SeleccionPersonal/Eliminar',
+                type: 'POST',
+                data: { Idpersonal: Idpersonal },
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire('Eliminado!', response.message, 'success');
+                        location.reload();
+                    } else {
+                        Swal.fire('Error', response.message, 'error');
+                    }
+                },
+                error: function () {
+                    Swal.fire('Error', 'Error al intentar eliminar el personal .', 'error');
+                }
+            });
+        }
+    </script>
+
+
 </body>
 </html>

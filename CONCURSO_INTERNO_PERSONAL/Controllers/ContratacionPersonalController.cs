@@ -7,6 +7,8 @@ using Microsoft.Data.SqlClient;
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace CONCURSO_INTERNO_PERSONAL.Controllers
 {
@@ -21,22 +23,45 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             _converter = converter;
         }
 
-        public IActionResult VistaPDF()
+        [Authorize(Roles = "jefeRecursosHumanos, admin")]
+        public IActionResult TablaContratPersonal()
         {
             List<Personal> lista = _SmvContext.Personals.Include(pt => pt.oPuesto).ToList();
             return View(lista);
         }
 
-        public IActionResult MostrarPDFenPagina() 
+        public async Task<IActionResult> MostrarDetalle(int Idpersonal)
         {
-        string pagina_actual = HttpContext.Request.Path;
-        string url_pagina = HttpContext.Request.GetEncodedUrl();
+            if (Idpersonal == 0 || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
+            {
+                return NotFound();
+            }
+
+            var personal = await _SmvContext.Personals.Include(pt =>pt.oPuesto)
+                .FirstOrDefaultAsync(m => m.Idpersonal == Idpersonal);
+            if (personal == null)
+            {
+                return NotFound();
+            }
+            return View(personal);
+        }
+        public IActionResult VistaPDF()
+        {
+            List<Personal> lista = _SmvContext.Personals.Include(p => p.oPuesto).ToList();
+            return View(lista);
+        }
+
+        public IActionResult MostrarPDFenPagina()
+        {
+            string pagina_actual = HttpContext.Request.Path;
+            string url_pagina = HttpContext.Request.GetEncodedUrl();
             url_pagina = url_pagina.Replace(pagina_actual, "");
             url_pagina = $"{url_pagina}/ContratacionPersonal/VistaPDF";
 
             var pdf = new HtmlToPdfDocument()
             {
-                GlobalSettings = new GlobalSettings(){
+                GlobalSettings = new GlobalSettings()
+                {
                     PaperSize = PaperKind.A4,
                     Orientation = Orientation.Portrait
                 },
@@ -50,57 +75,27 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
             return File(archivoPDF, "application/pdf");
         }
-
-        public IActionResult DescargarPDF()
+        public IActionResult Eliminar(int Idpersonal)
         {
-            string pagina_actual = HttpContext.Request.Path;
-            string url_pagina = HttpContext.Request.GetEncodedUrl();
-            url_pagina = url_pagina.Replace(pagina_actual, "");
-            url_pagina = $"{url_pagina}/ContratacionPersonal/VistaPDF";
-
-
-            var pdf = new HtmlToPdfDocument()
+            try
             {
-                GlobalSettings = new GlobalSettings()
+                Personal oPersonal = _SmvContext.Personals.Find(Idpersonal);
+
+                if (oPersonal == null)
                 {
-                    PaperSize = PaperKind.A4,
-                    Orientation = Orientation.Portrait
-                },
-                Objects = {
-                    new ObjectSettings(){
-                        Page = url_pagina
-                    }
+                    return NotFound();
                 }
 
-            };
+                _SmvContext.Personals.Remove(oPersonal);
+                _SmvContext.SaveChanges();
 
-            var archivoPDF = _converter.Convert(pdf);
-            string nombrePDF = "reporte_" + DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
-
-            return File(archivoPDF, "application/pdf", nombrePDF);
-        }
-
-        [Authorize(Roles = "jefeRecursosHumanos")]
-        public IActionResult TablaContratPersonal()
-        {
-            List<Personal> lista = _SmvContext.Personals.Include(pt => pt.oPuesto).ToList();
-            return View(lista);
-        }
-
-        public async Task<IActionResult> MostrarDetalle(string? Dni)
-        {
-            if (Dni == null || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
-            {
-                return NotFound();
+                return Json(new { success = true, message = "Eliminación exitosa" });
             }
-
-            var personal = await _SmvContext.Personals.Include(pt =>pt.oPuesto)
-                .FirstOrDefaultAsync(m => m.Dni == Dni);
-            if (personal == null)
+            catch
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error al intentar eliminar al postulante." });
             }
-            return View(personal);
         }
+
     }
 }

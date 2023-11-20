@@ -1,15 +1,93 @@
-﻿
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.SolicitudSueldo>
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if(Model != null && Model.Any())
+    {
+    <div class="col-9 row justify-content-center">
+    
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombre Personal</th>
+                    <th>Sueldo Solicitado</th>
+                    <th>Motivo</th>
+                    <th></th>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.oPersonal.Dni</td>
+                        <td>@item.oPersonal.NombapePers</td>
+                        <td>@item.SueldoSolic</td>
+                        <td>@item.Descripcion</td>
 
-<!DOCTYPE html>
+                        <td>
+                            <a class="btn btn-primary btn-sm " asp-action="VistaPDFenPagina" target="_blank"><i class="bi bi-check-circle-fill"></i></a>
+                            <a class="btn btn-danger btn-sm " onclick="confirmarEliminacion('@item.IdSolicSueldo')">
+                                <i class="bi bi-x-circle-fill"></i>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>validarPresupuesto</title>
-</head>
-<body>
-</body>
-</html>
+                            </a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+    else
+    {
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 text-danger fw-bold">Aún no se ha Ingresado Ninguna Solicitud de sueldo</h1>
+        </div>
+        <div class="col-12">
+            <div class="d-flex justify-content-center align-items-center">
+                <video autoplay loop muted>
+                    <source src="~/imgCU/nullMono.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+        
+    }
+
+    <script>
+        function confirmarEliminacion(IdSolicSueldo) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "No podrás revertir esto",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminarlo'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    eliminarRegistro(IdSolicSueldo);
+                }
+            });
+        }
+
+        function eliminarRegistro(IdSolicSueldo) {
+            $.ajax({
+                url: '/Presupuesto/Eliminar',
+                type: 'POST',
+                data: { IdSolicSueldo: IdSolicSueldo },
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire('Eliminado!', response.message, 'success');
+                        location.reload();
+                    } else {
+                        Swal.fire('Error', response.message, 'error');
+                    }
+                },
+                error: function () {
+                    Swal.fire('Error', 'Error al intentar eliminar la solicitud .', 'error');
+                }
+            });
+        }
+    </script>

@@ -13,7 +13,5 @@ public partial class Puesto
 
     public virtual ICollection<PerfilPuesto> PerfilPuestos { get; set; } = new List<PerfilPuesto>();
 
-    public virtual ICollection<PersonalPuesto> PersonalPuestos { get; set; } = new List<PersonalPuesto>();
-
     public virtual ICollection<Personal> Personals { get; set; } = new List<Personal>();
 }

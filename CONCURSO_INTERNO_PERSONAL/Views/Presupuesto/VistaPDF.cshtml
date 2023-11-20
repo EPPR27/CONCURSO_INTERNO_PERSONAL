@@ -1,0 +1,80 @@
+﻿@model List<CONCURSO_INTERNO_PERSONAL.Models.SolicitudSueldo>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VistaPDF</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        img {
+            width: 150px;
+            height: 70px;
+            margin-bottom:100px;
+        }
+        h1{
+            margin-bottom: 100px;
+        }
+
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+        .contenido{
+            margin: 0 100px;
+            text-align:justify;
+        }
+        p{
+            font-size:15pt;
+            margin-bottom:50px;
+        }
+        .firma{
+            margin:100px 0 0 150px;
+            display:flex;
+        }
+        .nom{
+            width: 25%; /* Cada div ocupa el 50% del ancho del contenedor */
+            padding: 20px;
+        }
+        span{
+            font-size:15pt;
+        }
+    </style>
+</head>
+<body>
+    @foreach(var item in Model)
+    {
+        <div>
+            <img src="~/imgCU/logo.png" />
+            <h1 class="text-center mb-4">Consolidado de Aumento de Presupuesto</h1>
+            <div class="contenido">
+                <p>
+                    Sr.(a) <b>@item.oPersonal.NombapePers</b>, identificado(a) con documento nacional de identidad <b>@item.oPersonal.Dni</b>
+                    es de nuestro agrado informarme que su solicitud de suedo neto para el puesto de <b>@item.oPersonal.oPuesto.NomPuesto</b>
+                    aumentó de <b>S/. @item.oPersonal.oPuesto.Sueldo</b> a <b>S/.@item.SueldoSolic</b>
+                    ha sido aprobada.
+                </p>
+                <p>
+                    El aumento de sueldo entra en rigor apartir del próximo mes, a nombre de la SuperIntendencia de Mercados y Valores
+                    agradecemos tu espera. Si tienes alguna pregunta o necesitas aclaraciones adicionales, no dudes en ponerte en contacto con
+                    nosotros.
+
+                    Atentamente,
+                </p>
+            </div>
+            <div class="firma">
+                    <div class="nom border-top border-dark text-center p-3">
+                        <span>Juan Perez</span>
+                        <br>
+                        <span>Jefe de Finanzas</span>
+                    </div>
+            </div>
+            
+        </div>
+    }
+    
+
+</body>
+</html>

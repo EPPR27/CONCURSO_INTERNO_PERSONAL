@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         option.AccessDeniedPath = "/Home/Privacy";
     });
-
+builder.Services.AddSession();
 
 var app = builder.Build();
 

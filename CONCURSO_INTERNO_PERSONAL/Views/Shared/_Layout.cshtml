@@ -4,10 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CONCURSO_INTERNO_PERSONAL</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="~/lib/sweetalert2/sweetalert2.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/CONCURSO_INTERNO_PERSONAL.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
@@ -22,7 +28,7 @@
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item mt-1 px-5">
                             <i class="bi bi-person-circle fs-3"></i>
-                            <span class="fs-4">@User.Identity.Name</span>
+                            <span class="fs-4 us">@User.Identity.Name</span>
                         </li>
                         <li class="nav-item px-2">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Acceso" asp-action="Salir"><i class="bi bi-box-arrow-left fs-3"></i></a>
@@ -38,14 +44,22 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer text-muted">
         <div class="container">
-            &copy; 2023 - CONCURSO_INTERNO_PERSONAL - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - App Concurso Interno Personal SMV - <a style="text-decoration:none" target="_blank" href="https://github.com/EPPR27?tab=repositories">Conócenos:</a>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @section Scripts {
+        <script src="~/lib/sweetalert2/dist/sweetalert2.min.js"></script>
+        <script src="~/lib/sweetalert2.net/dist/sweetalert2.net.js"></script>
+    }
 </body>
 </html>

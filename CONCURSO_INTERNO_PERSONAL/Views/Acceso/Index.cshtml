@@ -5,31 +5,49 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="es">
 <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/login.css"/>
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="row mt-5">
-        <div class="col-sm-4 offset-sm-4">
-
+<body class="bg d-flex justify-content-center align-items-center">
+    <div class="container-fluid">
+        <div class="card offset-sm-4">
+            <label class="login">Iniciar Sesión</label>
             <form asp-controller="Acceso" asp-action="Index" method="post">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" asp-for="Correo">
+                <div class="inputBox mb-3">
+                    <input type="email" asp-for="Correo" required="required">
+                    <span class="user">Correo</span>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" asp-for="Clave">
+                <div class="inputBox mb-3">
+                    <input type="password" asp-for="Clave" required="required">
+                    <span>Contraseña</span>
                 </div>
-                <button type="submit" class="btn btn-primary">Ingresar</button>
+
+                <button class="enter" type="submit">Ingresar</button>
             </form>
-
-
         </div>
     </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var errorMessage = '@Html.Raw(TempData["ErrorMessage"])';
+
+            if (errorMessage !== '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                });
+            }
+        });
+    </script>
 </body>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </html>

@@ -15,11 +15,9 @@ public partial class SmvConcursoInternoContext : DbContext
     {
     }
 
-    public virtual DbSet<AprobacionSueldo> AprobacionSueldos { get; set; }
 
     public virtual DbSet<ConocimientosLaborale> ConocimientosLaborales { get; set; }
 
-    public virtual DbSet<EstadoSolic> EstadoSolics { get; set; }
 
     public virtual DbSet<HabilidadesBlanda> HabilidadesBlandas { get; set; }
 
@@ -27,13 +25,11 @@ public partial class SmvConcursoInternoContext : DbContext
 
     public virtual DbSet<Personal> Personals { get; set; }
 
-    public virtual DbSet<PersonalPuesto> PersonalPuestos { get; set; }
 
     public virtual DbSet<Preguntum> Pregunta { get; set; }
 
     public virtual DbSet<Prueba> Pruebas { get; set; }
 
-    public virtual DbSet<PruebasMedica> PruebasMedicas { get; set; }
 
     public virtual DbSet<Puesto> Puestos { get; set; }
 
@@ -46,32 +42,10 @@ public partial class SmvConcursoInternoContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AprobacionSueldo>(entity =>
-        {
-            entity.HasKey(e => e.IdAprobacion).HasName("PK__APROBACI__C621EBC84176491C");
-
-            entity.ToTable("APROBACION_SUELDO");
-
-            entity.Property(e => e.IdAprobacion).HasColumnName("ID_APROBACION");
-            entity.Property(e => e.Dni)
-                .HasMaxLength(8)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("DNI");
-            entity.Property(e => e.IdEstado).HasColumnName("ID_ESTADO");
-
-            entity.HasOne(d => d.DniNavigation).WithMany(p => p.AprobacionSueldos)
-                .HasForeignKey(d => d.Dni)
-                .HasConstraintName("FK_ADNI");
-
-            entity.HasOne(d => d.IdEstadoNavigation).WithMany(p => p.AprobacionSueldos)
-                .HasForeignKey(d => d.IdEstado)
-                .HasConstraintName("FK_IDESTADO");
-        });
 
         modelBuilder.Entity<ConocimientosLaborale>(entity =>
         {
-            entity.HasKey(e => e.IdCl).HasName("PK__CONOCIMI__8B622F87BA779E0C");
+            entity.HasKey(e => e.IdCl).HasName("PK__CONOCIMI__8B622F8732904A52");
 
             entity.ToTable("CONOCIMIENTOS_LABORALES");
 
@@ -82,23 +56,10 @@ public partial class SmvConcursoInternoContext : DbContext
                 .HasColumnName("NOM_CL");
         });
 
-        modelBuilder.Entity<EstadoSolic>(entity =>
-        {
-            entity.HasKey(e => e.IdEstado).HasName("PK__ESTADO_S__241E2E015D3A1EBB");
-
-            entity.ToTable("ESTADO_SOLIC");
-
-            entity.Property(e => e.IdEstado).HasColumnName("ID_ESTADO");
-            entity.Property(e => e.Estado)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasDefaultValueSql("('PENDIENTE')")
-                .HasColumnName("ESTADO");
-        });
 
         modelBuilder.Entity<HabilidadesBlanda>(entity =>
         {
-            entity.HasKey(e => e.IdHb).HasName("PK__HABILIDA__8B62D727DE503316");
+            entity.HasKey(e => e.IdHb).HasName("PK__HABILIDA__8B62D727800EA020");
 
             entity.ToTable("HABILIDADES_BLANDAS");
 
@@ -111,7 +72,7 @@ public partial class SmvConcursoInternoContext : DbContext
 
         modelBuilder.Entity<PerfilPuesto>(entity =>
         {
-            entity.HasKey(e => e.IdPp).HasName("PK__PERFIL_P__8B63902B659BFB58");
+            entity.HasKey(e => e.IdPp).HasName("PK__PERFIL_P__8B63902B159474F2");
 
             entity.ToTable("PERFIL_PUESTO");
 
@@ -121,37 +82,33 @@ public partial class SmvConcursoInternoContext : DbContext
             entity.Property(e => e.IdPuesto).HasColumnName("ID_PUESTO");
             entity.Property(e => e.IdSede).HasColumnName("ID_SEDE");
 
-            entity.HasOne(d => d.IdClNavigation).WithMany(p => p.PerfilPuestos)
+            entity.HasOne(d => d.oConocimientosLaborales).WithMany(p => p.PerfilPuestos)
                 .HasForeignKey(d => d.IdCl)
                 .HasConstraintName("FK_IDCL");
 
-            entity.HasOne(d => d.IdHbNavigation).WithMany(p => p.PerfilPuestos)
+            entity.HasOne(d => d.oHabilidadesBlandas).WithMany(p => p.PerfilPuestos)
                 .HasForeignKey(d => d.IdHb)
                 .HasConstraintName("FK_IDHB");
 
-            entity.HasOne(d => d.IdPuestoNavigation).WithMany(p => p.PerfilPuestos)
+            entity.HasOne(d => d.oPuesto).WithMany(p => p.PerfilPuestos)
                 .HasForeignKey(d => d.IdPuesto)
                 .HasConstraintName("FK_IDPUESTO");
 
-            entity.HasOne(d => d.IdSedeNavigation).WithMany(p => p.PerfilPuestos)
+            entity.HasOne(d => d.oSede).WithMany(p => p.PerfilPuestos)
                 .HasForeignKey(d => d.IdSede)
                 .HasConstraintName("FK_IDSEDE");
         });
 
         modelBuilder.Entity<Personal>(entity =>
         {
-            entity.HasKey(e => e.Dni).HasName("PK__PERSONAL__C035B8DCDE0F1071");
+            entity.HasKey(e => e.Idpersonal).HasName("PK__PERSONAL__3C552D96895EBB53");
 
             entity.ToTable("PERSONAL");
 
-            entity.Property(e => e.Dni)
-                .HasMaxLength(8)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("DNI");
+            entity.Property(e => e.Idpersonal).HasColumnName("IDPERSONAL");
+            entity.Property(e => e.Dni).HasColumnName("DNI");
             entity.Property(e => e.IdCl).HasColumnName("ID_CL");
             entity.Property(e => e.IdHb).HasColumnName("ID_HB");
-            entity.Property(e => e.IdPruebasMedicas).HasColumnName("ID_PRUEBAS_MEDICAS");
             entity.Property(e => e.IdPuesto).HasColumnName("ID_PUESTO");
             entity.Property(e => e.NombapePers)
                 .HasMaxLength(100)
@@ -173,39 +130,15 @@ public partial class SmvConcursoInternoContext : DbContext
                 .HasForeignKey(d => d.IdHb)
                 .HasConstraintName("FK_ID_HB");
 
-            entity.HasOne(d => d.oPruebasMedicas).WithMany(p => p.Personals)
-                .HasForeignKey(d => d.IdPruebasMedicas)
-                .HasConstraintName("FK_ID_PRUEBAS_MEDICAS");
-
             entity.HasOne(d => d.oPuesto).WithMany(p => p.Personals)
                 .HasForeignKey(d => d.IdPuesto)
                 .HasConstraintName("FK_ID_PUESTO");
         });
 
-        modelBuilder.Entity<PersonalPuesto>(entity =>
-        {
-            entity.HasKey(e => e.IdPerPuesto).HasName("PK__PERSONAL__2605835645041EB6");
-
-            entity.ToTable("PERSONAL_PUESTO");
-
-            entity.Property(e => e.IdPerPuesto).HasColumnName("ID_PER_PUESTO");
-            entity.Property(e => e.IdPuesto).HasColumnName("ID_PUESTO");
-            entity.Property(e => e.IdSolicSueldo).HasColumnName("ID_SOLIC_SUELDO");
-
-            entity.HasOne(d => d.IdPuestoNavigation).WithMany(p => p.PersonalPuestos)
-                .HasForeignKey(d => d.IdPuesto)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_IDPUESTOP");
-
-            entity.HasOne(d => d.IdSolicSueldoNavigation).WithMany(p => p.PersonalPuestos)
-                .HasForeignKey(d => d.IdSolicSueldo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_SOLIC_SUELDO");
-        });
 
         modelBuilder.Entity<Preguntum>(entity =>
         {
-            entity.HasKey(e => e.IdPregunta).HasName("PK__Pregunta__6867FFA4E2D9500C");
+            entity.HasKey(e => e.IdPregunta).HasName("PK__Pregunta__6867FFA4BBC9A05A");
 
             entity.Property(e => e.IdPregunta).HasColumnName("id_pregunta");
             entity.Property(e => e.Enunciado)
@@ -253,23 +186,9 @@ public partial class SmvConcursoInternoContext : DbContext
                 .HasConstraintName("FK_PREGUNTA");
         });
 
-        modelBuilder.Entity<PruebasMedica>(entity =>
-        {
-            entity.HasKey(e => e.IdPruebasMedicas).HasName("PK__PRUEBAS___A806C4F888775167");
-
-            entity.ToTable("PRUEBAS_MEDICAS");
-
-            entity.Property(e => e.IdPruebasMedicas).HasColumnName("ID_PRUEBAS_MEDICAS");
-            entity.Property(e => e.Estado)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasDefaultValueSql("('PENDIENTE')")
-                .HasColumnName("ESTADO");
-        });
-
         modelBuilder.Entity<Puesto>(entity =>
         {
-            entity.HasKey(e => e.IdPuesto).HasName("PK__PUESTO__88D8DDB1BDF166C2");
+            entity.HasKey(e => e.IdPuesto).HasName("PK__PUESTO__88D8DDB1167786D9");
 
             entity.ToTable("PUESTO");
 
@@ -283,7 +202,7 @@ public partial class SmvConcursoInternoContext : DbContext
 
         modelBuilder.Entity<Sede>(entity =>
         {
-            entity.HasKey(e => e.IdSede).HasName("PK__SEDE__F5FFAE5110509D9B");
+            entity.HasKey(e => e.IdSede).HasName("PK__SEDE__F5FFAE51E4F355FB");
 
             entity.ToTable("SEDE");
 
@@ -296,7 +215,7 @@ public partial class SmvConcursoInternoContext : DbContext
 
         modelBuilder.Entity<SolicitudSueldo>(entity =>
         {
-            entity.HasKey(e => e.IdSolicSueldo).HasName("PK__SOLICITU__7D6091214EC46F69");
+            entity.HasKey(e => e.IdSolicSueldo).HasName("PK__SOLICITU__7D609121808360F6");
 
             entity.ToTable("SOLICITUD_SUELDO");
 
@@ -305,17 +224,13 @@ public partial class SmvConcursoInternoContext : DbContext
                 .HasMaxLength(250)
                 .IsUnicode(false)
                 .HasColumnName("DESCRIPCION");
-            entity.Property(e => e.Dni)
-                .HasMaxLength(8)
-                .IsUnicode(false)
-                .IsFixedLength()
-                .HasColumnName("DNI");
+            entity.Property(e => e.Idpersonal).HasColumnName("IDPERSONAL");
             entity.Property(e => e.SueldoSolic).HasColumnName("SUELDO_SOLIC");
 
-            entity.HasOne(d => d.DniNavigation).WithMany(p => p.SolicitudSueldos)
-                .HasForeignKey(d => d.Dni)
+            entity.HasOne(d => d.oPersonal).WithMany(p => p.SolicitudSueldos)
+                .HasForeignKey(d => d.Idpersonal)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_DNI");
+                .HasConstraintName("FK_IDPERSONAL");
         });
 
         OnModelCreatingPartial(modelBuilder);
