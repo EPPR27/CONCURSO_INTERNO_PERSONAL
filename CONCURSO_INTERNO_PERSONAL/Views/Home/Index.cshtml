@@ -9,7 +9,7 @@
     bool tieneAccesoValidarPresupuesto = User.IsInRole("jefeFinanzas") || User.IsInRole("admin");
 }
 
-<div class="row row-cols-1 row-cols-md-3 g-5 align-items-center justify-content-center">
+<div class="row row-cols-1 row-cols-md-3 g-5 align-items-center justify-content-center my-3 pb-5">
         
         <div class="col tarjeta @(tieneAccesoPerfilPuesto ? "" : "inactive-card")">
             <a style="text-decoration:none" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto">

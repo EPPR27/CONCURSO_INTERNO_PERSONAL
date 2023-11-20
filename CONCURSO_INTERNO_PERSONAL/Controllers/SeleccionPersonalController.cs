@@ -21,10 +21,9 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         public IActionResult Index()
         {
             List<Personal> lista = _SmvContext.Personals
-                .Include(pm => pm.oPruebasMedicas)
                 .Include(pt => pt.oPuesto)
-                .Include(hb => hb.oHabilidadesBlandas)
                 .Include(cl => cl.oConocimientosLaborales)
+                .Include(hb => hb.oHabilidadesBlandas)
                 .ToList();
             return View(lista);
         }
@@ -35,11 +34,6 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             PersonalVM oPersonalVM = new PersonalVM()
             {
                 oPersonal = new Personal(),
-                oListaPruebasMedicas = _SmvContext.PruebasMedicas.Select(pruebamedica => new SelectListItem()
-                {
-                    Text = pruebamedica.Estado,
-                    Value = pruebamedica.IdPruebasMedicas.ToString()
-                }).ToList(),
                 oListaConocimientosLaborales = _SmvContext.ConocimientosLaborales.Select(conocimientoslaborales => new SelectListItem()
                 {
                     Text = conocimientoslaborales.NomCl,
@@ -67,40 +61,47 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         [HttpPost]
         public IActionResult AdministrarPersonal(PersonalVM oPersonalVM)
         {
-            if (oPersonalVM.oPersonal.Idpersonal == 0)
+            try
             {
-                _SmvContext.Personals.Add(oPersonalVM.oPersonal);
-            }
-            else
+                if (oPersonalVM.oPersonal.Idpersonal == 0)
+                {
+                    _SmvContext.Personals.Add(oPersonalVM.oPersonal);
+                    _SmvContext.SaveChanges();
+
+                }
+                else
+                {
+                    _SmvContext.Personals.Update(oPersonalVM.oPersonal);
+                    _SmvContext.SaveChanges();
+                }
+            }catch
             {
-                _SmvContext.Personals.Update(oPersonalVM.oPersonal);
+                TempData["ErrorMessage"] = "Ingresar Datos requeridos para agregar Postulante.";
+                return RedirectToAction("AdministrarPersonal", "SeleccionPersonal");
             }
-
-            _SmvContext.SaveChanges();
-
             return RedirectToAction("Index", "SeleccionPersonal");
         }
 
-        [HttpGet]
-        public IActionResult Eliminar(int idpersonal)
+        public IActionResult Eliminar(int Idpersonal)
         {
-            Personal oPersonal = _SmvContext.Personals
-                .Include(pm => pm.oPruebasMedicas)
-                .Include(pt => pt.oPuesto)
-                .Include(hb => hb.oHabilidadesBlandas)
-                .Include(cl => cl.oConocimientosLaborales)
-                .Where(e => e.Idpersonal == idpersonal).FirstOrDefault();
+            try
+            {
+                Personal oPersonal = _SmvContext.Personals.Find(Idpersonal);
 
-            return View(oPersonal);
-        }
+                if (oPersonal == null)
+                {
+                    return NotFound();
+                }
 
-        [HttpPost]
-        public IActionResult Eliminar(Personal oPersonal)
-        {
-            _SmvContext.Personals.Remove(oPersonal);
-            _SmvContext.SaveChanges();
+                _SmvContext.Personals.Remove(oPersonal);
+                _SmvContext.SaveChanges();
 
-            return RedirectToAction("Index", "SeleccionPersonal");
+                return Json(new { success = true, message = "Eliminación exitosa" });
+            }
+            catch
+            {
+                return Json(new { success = false, message = "Error al intentar eliminar al postulante." });
+            }
         }
     }
 }

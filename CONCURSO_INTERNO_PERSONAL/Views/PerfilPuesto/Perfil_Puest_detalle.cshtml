@@ -64,4 +64,28 @@ else
 
     </div>
 </div>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var errorMessage = '@Html.Raw(TempData["ErrorMessage"])';
+         var successMessage = '@Html.Raw(TempData["SuccessMessage"])';
+
+        if (errorMessage !== '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: errorMessage,
+            });
+        }
+         if (successMessage !== '') {
+             Swal.fire({
+                 icon: 'success',
+                 title: 'Success',
+                 text: successMessage,
+             });
+         }
+    });
+</script>
 

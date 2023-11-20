@@ -5,26 +5,15 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
-body {
-    background: #D9D9D9;
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+.contenedor {
+    margin-bottom: 50px;
 }
-
 .crear_preguntas {
-    display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     border: 1px solid #ccc;
     border-radius: 7px;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.2);
-    max-width: 1100px;
-    margin: 10px auto;
     padding: 35px 0;
-    background: #f4f7f8;
 }
 
 .crearPregunta_input {

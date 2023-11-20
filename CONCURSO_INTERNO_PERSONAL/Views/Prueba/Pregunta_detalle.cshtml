@@ -1,7 +1,7 @@
 ﻿@model CONCURSO_INTERNO_PERSONAL.Models.VMPrueba.PruebaVM
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -13,77 +13,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/estilos_prueba_input.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        <div>
-
-            <form asp-action="Pregunta_detalle" class="row crear_preguntas was-validated" asp-controller="Prueba" method="post" novalidate>
-
-
-                <div class="col">
-                    <div class="crearPregunta_input position-relative">
-                        <label>Pregunta</label>
-                        <input class="form-control" asp-for="Prueba.oPregunta.Enunciado" id="validationTooltip01" required type="text" />
-                        <div class="invalid-tooltip">
-                            Ingresar Enunciado
-                        </div>
-                    </div>
-                    <div class="crearPregunta_input position-relative">
-                        <label>Alternativa A</label>
-                        <input class="form-control" asp-for="Prueba.oPregunta.OpcionA" id="validationTooltip02" required type="text" />
-                        <div class="invalid-tooltip">
-                            Ingresar Respuesta A
-                        </div>
-                    </div>
-                    <div class="crearPregunta_input position-relative">
-                        <label>Alternativa B</label>
-                        <input class="form-control" asp-for="Prueba.oPregunta.OpcionB" id="validationTooltip03" required type="text" />
-                        <div class="invalid-tooltip">
-                            Ingresar Respuesta B
-                        </div>
-                    </div>
-                    <div class="crearPregunta_input position-relative">
-                        <label>Alternativa C</label>
-                        <input class="form-control" asp-for="Prueba.oPregunta.OpcionC" id="validationTooltip04" required type="text" />
-                        <div class="invalid-tooltip">
-                            Ingresar Respuesta C
-                        </div>
-                    </div>
-                    <div class="crearPregunta_input position-relative">
-                        <label>Alternativa D</label>
-                        <input class="form-control" asp-for="Prueba.oPregunta.OpcionD" id="validationTooltip05" required type="text" />
-                        <div class="invalid-tooltip">
-                            Ingresar Respuesta D
-                        </div>
+    <div class="contenedor">
+        <form asp-action="Pregunta_detalle" class="row crear_preguntas was-validated" asp-controller="Prueba" method="post" novalidate>
+            <div class="col">
+                <div class="crearPregunta_input position-relative">
+                    <label>Pregunta</label>
+                    <input class="form-control" asp-for="Prueba.oPregunta.Enunciado" id="validationTooltip01" required type="text" />
+                    <div class="invalid-tooltip">
+                        Ingresar Enunciado
                     </div>
                 </div>
-
-                <div class="col">
-                    <div class=" crearPregunta_input position-relative">
-                        <label asp-for="Prueba.oPregunta.RespuestaCorrecta">Respuesta Corecta</label>
-                        <input class="form-control" asp-for="Prueba.oPregunta.RespuestaCorrecta" id="validationTooltip06" required type="text" />
-                        <div class="invalid-tooltip">
-                           Elegir Alternativa Correcta
-                        </div>
-                    </div>
-                    <div class=" crearPregunta_input position-relative">
-                        <label asp-for="Prueba.Puntaje">Puntaje</label>
-                        <input class="form-control" asp-for="Prueba.Puntaje" id="validationTooltip07" required type="text" />
-                        <div class="invalid-tooltip">
-                            Colocar Puntaje
-                        </div>
+                <div class="crearPregunta_input position-relative">
+                    <label>Alternativa A</label>
+                    <input class="form-control" asp-for="Prueba.oPregunta.OpcionA" id="validationTooltip02" required type="text" />
+                    <div class="invalid-tooltip">
+                        Ingresar Respuesta A
                     </div>
                 </div>
-
-                <div class="row d-flex justify-content-center align-items-center mt-4">
-                    <button class="col" type="submit">Generar</button>
-                    <button class="col btn-secondary" asp-action="Prueba_index" asp-controller="Prueba" type="submit">Volver</button>
+                <div class="crearPregunta_input position-relative">
+                    <label>Alternativa B</label>
+                    <input class="form-control" asp-for="Prueba.oPregunta.OpcionB" id="validationTooltip03" required type="text" />
+                    <div class="invalid-tooltip">
+                        Ingresar Respuesta B
+                    </div>
                 </div>
-            </form>
-            
+                <div class="crearPregunta_input position-relative">
+                    <label>Alternativa C</label>
+                    <input class="form-control" asp-for="Prueba.oPregunta.OpcionC" id="validationTooltip04" required type="text" />
+                    <div class="invalid-tooltip">
+                        Ingresar Respuesta C
+                    </div>
+                </div>
+                <div class="crearPregunta_input position-relative">
+                    <label>Alternativa D</label>
+                    <input class="form-control" asp-for="Prueba.oPregunta.OpcionD" id="validationTooltip05" required type="text" />
+                    <div class="invalid-tooltip">
+                        Ingresar Respuesta D
+                    </div>
+                </div>
+            </div>
 
-        </div>
+            <div class="col">
+                <div class=" crearPregunta_input position-relative">
+                    <label asp-for="Prueba.oPregunta.RespuestaCorrecta">Respuesta Corecta</label>
+                    <input class="form-control" asp-for="Prueba.oPregunta.RespuestaCorrecta" id="validationTooltip06" required type="text" />
+                    <div class="invalid-tooltip">
+                        Elegir Alternativa Correcta
+                    </div>
+                </div>
+                <div class=" crearPregunta_input position-relative">
+                    <label asp-for="Prueba.Puntaje">Puntaje</label>
+                    <input class="form-control" asp-for="Prueba.Puntaje" id="validationTooltip07" required type="text" />
+                    <div class="invalid-tooltip">
+                        Colocar Puntaje
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-center align-items-center mt-4">
+                <button class="col" type="submit">Generar</button>
+                <button class="col btn-secondary" asp-action="Prueba_index" asp-controller="Prueba" type="submit">Volver</button>
+            </div>
+        </form>
     </div>
+    
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var errorMessage = '@Html.Raw(TempData["ErrorMessage"])';
+
+            if (errorMessage !== '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                });
+            }
+        });
+    </script>
 </body>
 </html>

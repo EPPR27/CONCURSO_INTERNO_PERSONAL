@@ -7,6 +7,8 @@ using Microsoft.Data.SqlClient;
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace CONCURSO_INTERNO_PERSONAL.Controllers
 {
@@ -19,66 +21,6 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         {
             _SmvContext = context;
             _converter = converter;
-        }
-
-        [Authorize(Roles = "jefeRecursosHumanos, admin")]
-        public IActionResult VistaPDF()
-        {
-            List<Personal> lista = _SmvContext.Personals.Include(pt => pt.oPuesto).ToList();
-            return View(lista);
-        }
-
-        public IActionResult MostrarPDFenPagina() 
-        {
-        string pagina_actual = HttpContext.Request.Path;
-        string url_pagina = HttpContext.Request.GetEncodedUrl();
-            url_pagina = url_pagina.Replace(pagina_actual, "");
-            url_pagina = $"{url_pagina}/ContratacionPersonal/VistaPDF";
-
-            var pdf = new HtmlToPdfDocument()
-            {
-                GlobalSettings = new GlobalSettings(){
-                    PaperSize = PaperKind.A4,
-                    Orientation = Orientation.Portrait
-                },
-                Objects = {
-                    new  ObjectSettings(){
-                        Page = url_pagina
-                    }
-                }
-            };
-            var archivoPDF = _converter.Convert(pdf);
-
-            return File(archivoPDF, "application/pdf");
-        }
-
-        public IActionResult DescargarPDF()
-        {
-            string pagina_actual = HttpContext.Request.Path;
-            string url_pagina = HttpContext.Request.GetEncodedUrl();
-            url_pagina = url_pagina.Replace(pagina_actual, "");
-            url_pagina = $"{url_pagina}/ContratacionPersonal/VistaPDF";
-
-
-            var pdf = new HtmlToPdfDocument()
-            {
-                GlobalSettings = new GlobalSettings()
-                {
-                    PaperSize = PaperKind.A4,
-                    Orientation = Orientation.Portrait
-                },
-                Objects = {
-                    new ObjectSettings(){
-                        Page = url_pagina
-                    }
-                }
-
-            };
-
-            var archivoPDF = _converter.Convert(pdf);
-            string nombrePDF = "reporte_" + DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
-
-            return File(archivoPDF, "application/pdf", nombrePDF);
         }
 
         [Authorize(Roles = "jefeRecursosHumanos, admin")]
@@ -103,5 +45,57 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             }
             return View(personal);
         }
+        public IActionResult VistaPDF()
+        {
+            List<Personal> lista = _SmvContext.Personals.Include(p => p.oPuesto).ToList();
+            return View(lista);
+        }
+
+        public IActionResult MostrarPDFenPagina()
+        {
+            string pagina_actual = HttpContext.Request.Path;
+            string url_pagina = HttpContext.Request.GetEncodedUrl();
+            url_pagina = url_pagina.Replace(pagina_actual, "");
+            url_pagina = $"{url_pagina}/ContratacionPersonal/VistaPDF";
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = new GlobalSettings()
+                {
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait
+                },
+                Objects = {
+                    new  ObjectSettings(){
+                        Page = url_pagina
+                    }
+                }
+            };
+            var archivoPDF = _converter.Convert(pdf);
+
+            return File(archivoPDF, "application/pdf");
+        }
+        public IActionResult Eliminar(int Idpersonal)
+        {
+            try
+            {
+                Personal oPersonal = _SmvContext.Personals.Find(Idpersonal);
+
+                if (oPersonal == null)
+                {
+                    return NotFound();
+                }
+
+                _SmvContext.Personals.Remove(oPersonal);
+                _SmvContext.SaveChanges();
+
+                return Json(new { success = true, message = "Eliminación exitosa" });
+            }
+            catch
+            {
+                return Json(new { success = false, message = "Error al intentar eliminar al postulante." });
+            }
+        }
+
     }
 }

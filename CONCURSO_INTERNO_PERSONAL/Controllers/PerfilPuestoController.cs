@@ -58,21 +58,27 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         [HttpPost]
         public IActionResult Perfil_Puest_detalle(Perfil_Puesto_VM oPerfil_Puesto_VM)
         {
-            if (oPerfil_Puesto_VM.oPerfilPuesto.IdPuesto == 0 || oPerfil_Puesto_VM.oPerfilPuesto.IdSede == 0 || oPerfil_Puesto_VM.oPerfilPuesto.IdCl == 0 || oPerfil_Puesto_VM.oPerfilPuesto.IdHb == 0)
+            try
             {
-                ViewBag.Script = "Swal.fire('Aviso', 'Debe Ingresar El sueldo Solicitado', 'error');";
+                if (oPerfil_Puesto_VM.oPerfilPuesto.IdPp == 0)
+                {
+                    _DBContext.PerfilPuestos.Add(oPerfil_Puesto_VM.oPerfilPuesto);
+                }
+                else
+                {
+                    _DBContext.PerfilPuestos.Update(oPerfil_Puesto_VM.oPerfilPuesto);
+                    
+                }
+                _DBContext.SaveChanges();
+                TempData["SuccessMessage"] = "Se creó satisfactoriamente el Perfil de Puesto";
                 return RedirectToAction("Perfil_Puest_detalle", "PerfilPuesto");
             }
-            if (oPerfil_Puesto_VM.oPerfilPuesto.IdPp == 0)
+            catch
             {
-                _DBContext.PerfilPuestos.Add(oPerfil_Puesto_VM.oPerfilPuesto);
+                TempData["ErrorMessage"] = "Seleccionar Datos necesarios para perfil de Puesto";
+                return RedirectToAction("Perfil_Puest_detalle", "PerfilPuesto");
             }
-            else
-            {
-                _DBContext.PerfilPuestos.Update(oPerfil_Puesto_VM.oPerfilPuesto);
-            }
-            _DBContext.SaveChanges();
-            return RedirectToAction("Perfil_Puest_detalle", "PerfilPuesto");
+            
         }
         [HttpGet]
         public IActionResult TablaPerfiles()
@@ -101,7 +107,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
                 return Json(new { success = true, message = "Eliminación exitosa" });
             }
-            catch (Exception ex)
+            catch
             {
                 return Json(new { success = false, message = "Error al intentar eliminar El Perfil de Puesto." });
             }

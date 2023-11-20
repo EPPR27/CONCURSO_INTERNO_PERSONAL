@@ -15,5 +15,4 @@ public partial class SolicitudSueldo
 
     public virtual Personal oPersonal { get; set; } = null!;
 
-    public virtual ICollection<PersonalPuesto> PersonalPuestos { get; set; } = new List<PersonalPuesto>();
 }

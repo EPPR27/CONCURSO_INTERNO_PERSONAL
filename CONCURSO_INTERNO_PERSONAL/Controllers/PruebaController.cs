@@ -69,41 +69,46 @@ namespace Prueba_CRUD.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Pregunta_detalle(PruebaVM oPruebaVM)
+        public IActionResult Pregunta_detalle(PruebaVM oPruebaVM)
         {
-
-
-            var pregunta = new Preguntum
+            try
             {
-                IdPregunta = oPruebaVM.Prueba.oPregunta.IdPregunta,
-                Enunciado = oPruebaVM.Prueba.oPregunta.Enunciado,
-                OpcionA = oPruebaVM.Prueba.oPregunta.OpcionA,
-                OpcionB = oPruebaVM.Prueba.oPregunta.OpcionB,
-                OpcionC = oPruebaVM.Prueba.oPregunta.OpcionC,
-                OpcionD = oPruebaVM.Prueba.oPregunta.OpcionD,
-                RespuestaCorrecta = oPruebaVM.Prueba.oPregunta.RespuestaCorrecta
+                var pregunta = new Preguntum
+                {
+                    IdPregunta = oPruebaVM.Prueba.oPregunta.IdPregunta,
+                    Enunciado = oPruebaVM.Prueba.oPregunta.Enunciado,
+                    OpcionA = oPruebaVM.Prueba.oPregunta.OpcionA,
+                    OpcionB = oPruebaVM.Prueba.oPregunta.OpcionB,
+                    OpcionC = oPruebaVM.Prueba.oPregunta.OpcionC,
+                    OpcionD = oPruebaVM.Prueba.oPregunta.OpcionD,
+                    RespuestaCorrecta = oPruebaVM.Prueba.oPregunta.RespuestaCorrecta
 
-            };
+                };
 
-            var pru = new Prueba
+                var pru = new Prueba
+                {
+                    oPregunta = pregunta,
+                    IdResultado = pregunta.IdPregunta,
+                    IdPregunta = pregunta.IdPregunta,
+
+                    RespuestaCorrecta = pregunta.RespuestaCorrecta,
+                    Puntaje = oPruebaVM.Prueba.Puntaje
+                };
+                 _DBContext.Pregunta.Add(pregunta);
+                _DBContext.Pruebas.Add(pru);
+
+                _DBContext.SaveChanges();
+                return RedirectToAction("Prueba_index", "Prueba");
+            }
+            catch
             {
-                oPregunta = pregunta,
-                IdResultado = pregunta.IdPregunta,
-                IdPregunta = pregunta.IdPregunta,
-
-                RespuestaCorrecta = pregunta.RespuestaCorrecta,
-                Puntaje = oPruebaVM.Prueba.Puntaje
-            };
-            await _DBContext.Pregunta.AddAsync(pregunta);
-            await _DBContext.Pruebas.AddAsync(pru);
-
-            _DBContext.SaveChanges();
-            return RedirectToAction("Prueba_index", "Prueba");
-
+                TempData["ErrorMessage"] = "Ingresar correctamente la pregunta.";
+                return RedirectToAction("Pregunta_detalle", "Prueba");
+            }
         }
         public IActionResult EliminarTodasLasPreguntas()
         {
-            _DBContext.Pruebas.RemoveRange(_DBContext.Pruebas.ToList());
+            _DBContext.Pruebas.RemoveRange(_DBContext.Pruebas.ToList());    
             _DBContext.SaveChanges();
 
             return RedirectToAction("Prueba_index", "Prueba");

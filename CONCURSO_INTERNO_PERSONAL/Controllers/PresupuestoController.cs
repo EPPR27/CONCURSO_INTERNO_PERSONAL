@@ -48,7 +48,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
                 return Json(new { success = true, message = "Eliminación exitosa" });
             }
-            catch (Exception ex)
+            catch
             {
                 return Json(new { success = false, message = "Error al intentar eliminar la Solicitud de Sueldo." });
             }
@@ -75,31 +75,35 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         [HttpPost]
         public IActionResult SolicitarSueldo(PresupuestoVM oPresupuestoVM)
         {
-            if (oPresupuestoVM.oSolicitudSueldo.SueldoSolic == 0 || oPresupuestoVM.oSolicitudSueldo.Descripcion == null)
+            try
             {
-                ViewBag.Script = "Swal.fire('Aviso', 'Debe Ingresar El sueldo Solicitado', 'error');";
+                if (oPresupuestoVM.oSolicitudSueldo.IdSolicSueldo == 0)
+                {
+                    _context.SolicitudSueldos.Add(oPresupuestoVM.oSolicitudSueldo);
+                }
+                else
+                {
+                    _context.SolicitudSueldos.Update(oPresupuestoVM.oSolicitudSueldo);
+                }
+                _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Solicitud Creada con Éxito";
                 return RedirectToAction("SolicitarSueldo", "Presupuesto");
             }
-            if (oPresupuestoVM.oSolicitudSueldo.IdSolicSueldo == 0)
+            catch
             {
-                _context.SolicitudSueldos.Add(oPresupuestoVM.oSolicitudSueldo);
+                TempData["ErrorMessage"] = "Ingresar Información solicitada";
+                return RedirectToAction("SolicitarSueldo", "Presupuesto");
             }
-            else
-            {
-                _context.SolicitudSueldos.Update(oPresupuestoVM.oSolicitudSueldo);
-            }
-            _context.SaveChanges();
-
-            return RedirectToAction("SolicitarSueldo", "Presupuesto");
+            
         }
-        [Authorize(Roles = "jefeFinanzas, admin")]
+
         [HttpGet]
         public IActionResult VistaPDF(int IdSolicitud)
         {
-            SolicitudSueldo List = _context.SolicitudSueldos.Find(IdSolicitud);
+            List<SolicitudSueldo> List = _context.SolicitudSueldos.Include(p => p.oPersonal).Include(p => p.oPersonal.oPuesto).ToList();
             return View(List);
         }
-        [Authorize(Roles = "jefeFinanzas, admin")]
         [HttpGet]
         public IActionResult VistaPDFenPagina()
         {
