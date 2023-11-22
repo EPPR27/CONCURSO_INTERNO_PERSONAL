@@ -56,13 +56,14 @@ else
             <div class="row">
                 @if (Model.oPerfilPuesto.IdPp == 0)
                 {
-                    <button type="submit" class="col-6 btn btn-primary">Crear</button>
+                    <button type="submit" class="col-3 ms-3 btn btn-primary">Crear</button>
+                    <a class="col-3 ms-3 btn btn-dark btn-sm" asp-action="TablaPerfiles" asp-controller="PerfilPuesto">Perfiles Creados</a>
                 }
                 else
                 {
-                    <button type="submit" class="col-6 btn btn-primary">Guardar</button>
+                    <button type="submit" class="col-6 btn btn-primary">Actualizar</button>
                 }
-                <a class="col-5 ms-4 btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+                <a class="col-3 ms-3 btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home"><i class="bi bi-arrow-return-left fs-5"></i></a>
             </div>
             
         </form>
