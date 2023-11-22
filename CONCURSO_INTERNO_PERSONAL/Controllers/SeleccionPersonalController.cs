@@ -65,8 +65,16 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             {
                 if (oPersonalVM.oPersonal.Idpersonal == 0)
                 {
-                    _SmvContext.Personals.Add(oPersonalVM.oPersonal);
-                    _SmvContext.SaveChanges();
+                    if(oPersonalVM.oPersonal.Dni != 0)
+                    {
+                        _SmvContext.Personals.Add(oPersonalVM.oPersonal);
+                        _SmvContext.SaveChanges();
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "Ingresar Datos requeridos para agregar Postulante.";
+                        return RedirectToAction("AdministrarPersonal", "SeleccionPersonal");
+                    }
 
                 }
                 else
