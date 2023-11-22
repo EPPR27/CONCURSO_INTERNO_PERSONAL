@@ -17,7 +17,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         }
 
 
-        [Authorize(Roles = "comiteSeleccion, saoga, admin")]
+        [Authorize(Roles = "comiteSeleccion, saoga, admin, jefeRecursosHumanos")]
         public IActionResult Index()
         {
             List<Personal> lista = _SmvContext.Personals
@@ -27,7 +27,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
                 .ToList();
             return View(lista);
         }
-
+        [Authorize(Roles = "comiteSeleccion, saoga, admin, jefeRecursosHumanos")]
         [HttpGet]
         public IActionResult AdministrarPersonal(int idpersonal)
         {

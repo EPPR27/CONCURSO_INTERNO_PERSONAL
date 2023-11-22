@@ -19,7 +19,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
 
         }
-        [Authorize (Roles = "profesionalPerfil, admin")]
+        [Authorize(Roles = "admin,comiteSeleccion,saoga,profesionalPerfil")]
         [HttpGet]
        
         public IActionResult Perfil_Puest_detalle(int IdPerfil)
@@ -63,14 +63,16 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
                 if (oPerfil_Puesto_VM.oPerfilPuesto.IdPp == 0)
                 {
                     _DBContext.PerfilPuestos.Add(oPerfil_Puesto_VM.oPerfilPuesto);
+                    _DBContext.SaveChanges();
+                    TempData["SuccessMessage"] = "Se creó satisfactoriamente el Perfil de Puesto";
                 }
                 else
                 {
                     _DBContext.PerfilPuestos.Update(oPerfil_Puesto_VM.oPerfilPuesto);
-                    
+                    _DBContext.SaveChanges();
+                    TempData["SuccessMessage"] = "Se actualizó satisfactoriamente el Perfil de Puesto";
                 }
-                _DBContext.SaveChanges();
-                TempData["SuccessMessage"] = "Se creó satisfactoriamente el Perfil de Puesto";
+                
                 return RedirectToAction("Perfil_Puest_detalle", "PerfilPuesto");
             }
             catch
