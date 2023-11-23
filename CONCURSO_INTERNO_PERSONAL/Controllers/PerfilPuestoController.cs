@@ -55,6 +55,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
             return View(perfilpuestoVM);
         }
+        [Authorize(Roles = "profesionalPerfil, admin")]
         [HttpPost]
         public IActionResult Perfil_Puest_detalle(Perfil_Puesto_VM oPerfil_Puesto_VM)
         {
@@ -82,6 +83,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             }
             
         }
+        [Authorize(Roles = "profesionalPerfil, admin")]
         [HttpGet]
         public IActionResult TablaPerfiles()
         {
@@ -93,6 +95,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
                 .ToList();
             return View(lista);
         }
+        [Authorize(Roles = "profesionalPerfil, admin")]
         public IActionResult Eliminar(int IdPp)
         {
             try

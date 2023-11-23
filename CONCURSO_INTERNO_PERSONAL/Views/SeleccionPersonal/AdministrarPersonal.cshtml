@@ -24,7 +24,7 @@
 
                 <div class="col-md-4 mb-5 position-relative">
                     <label for="Idni" class="form-label fw-bold">DNI</label>
-                        <input id="Idni" required class="form-control form-control-sm" asp-for="oPersonal.Dni" type="text" pattern="[1-9]\d{7}" />
+                        <input id="Idni" required class="form-control form-control-sm" asp-for="oPersonal.Dni" type="text" pattern="[1-9]\d{7}" maxlength="8" />
                     <div class="invalid-tooltip">
                         DNI incorrecto
                     </div>
@@ -32,7 +32,7 @@
 
                 <div class="col-md-8 mb-5 position-relative">
                     <label class="form-label fw-bold">Postulante</label>
-                    <input class="form-control form-control-sm" asp-for="oPersonal.NombapePers" placeholder="Nombre Apellido" type="text" id="validationTooltip07" required />
+                    <input class="form-control form-control-sm" asp-for="oPersonal.NombapePers" pattern="^[A-Za-z ]+$" placeholder="Nombre Apellido" type="text" id="validationTooltip07" required />
                     <div class="invalid-tooltip">
                         Ingresar Nombre Postulante
                     </div>

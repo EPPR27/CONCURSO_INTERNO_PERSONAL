@@ -23,51 +23,21 @@ namespace Prueba_CRUD.Controllers
 
             _converter = converter;
         }
-        public IActionResult VistaParaPDF()
-        {
-            List<Prueba> lista = _DBContext.Pruebas.Include(e => e.oPregunta).ToList();
-            return View(lista);
-        }
-        public IActionResult MostrarPDFenPagina()
-        {
-            string pagina_actual = HttpContext.Request.Path;
-            string url_pagina = HttpContext.Request.GetEncodedUrl();
-            url_pagina = url_pagina.Replace(pagina_actual, "");
-            url_pagina = $"{url_pagina}/Prueba/VistaParaPDF";
-
-
-            var pdf = new HtmlToPdfDocument()
-            {
-                GlobalSettings = new GlobalSettings()
-                {
-                    PaperSize = PaperKind.A4,
-                    Orientation = Orientation.Portrait
-                },
-                Objects = {
-                    new ObjectSettings(){
-                        Page = url_pagina
-                    }
-                }
-
-            };
-            var archivoPDF = _converter.Convert(pdf);
-
-
-            return File(archivoPDF, "application/pdf");
-        }
         [Authorize(Roles = "encargadoSeleccionPersonal, admin")]
+        [HttpGet]
         public IActionResult Prueba_index()
         {
             List<Prueba> lista = _DBContext.Pruebas.Include(e => e.oPregunta).ToList();
             return View(lista);
 
         }
+        [Authorize(Roles = "encargadoSeleccionPersonal, admin")]
         [HttpGet]
         public IActionResult Pregunta_detalle()
         {
             return View();
         }
-
+        [Authorize(Roles = "encargadoSeleccionPersonal, admin")]
         [HttpPost]
         public IActionResult Pregunta_detalle(PruebaVM oPruebaVM)
         {
@@ -106,12 +76,49 @@ namespace Prueba_CRUD.Controllers
                 return RedirectToAction("Pregunta_detalle", "Prueba");
             }
         }
+        [Authorize(Roles = "encargadoSeleccionPersonal, admin")]
+        [HttpGet]
         public IActionResult EliminarTodasLasPreguntas()
         {
             _DBContext.Pruebas.RemoveRange(_DBContext.Pruebas.ToList());    
             _DBContext.SaveChanges();
 
             return Json(new { success = true, message = "Eliminación exitosa" });
+        }
+        [HttpGet]
+        public IActionResult VistaParaPDF()
+        {
+            List<Prueba> lista = _DBContext.Pruebas.Include(e => e.oPregunta).ToList();
+            return View(lista);
+        }
+        [Authorize(Roles = "encargadoSeleccionPersonal, admin")]
+        [HttpGet]
+        public IActionResult MostrarPDFenPagina()
+        {
+            string pagina_actual = HttpContext.Request.Path;
+            string url_pagina = HttpContext.Request.GetEncodedUrl();
+            url_pagina = url_pagina.Replace(pagina_actual, "");
+            url_pagina = $"{url_pagina}/Prueba/VistaParaPDF";
+
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = new GlobalSettings()
+                {
+                    PaperSize = PaperKind.A4,
+                    Orientation = Orientation.Portrait
+                },
+                Objects = {
+                    new ObjectSettings(){
+                        Page = url_pagina
+                    }
+                }
+
+            };
+            var archivoPDF = _converter.Convert(pdf);
+
+
+            return File(archivoPDF, "application/pdf");
         }
     }
 

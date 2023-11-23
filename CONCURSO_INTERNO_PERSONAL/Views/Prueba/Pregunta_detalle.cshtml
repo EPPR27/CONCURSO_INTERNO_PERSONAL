@@ -59,14 +59,14 @@
             <div class="col">
                 <div class=" crearPregunta_input position-relative">
                     <label asp-for="Prueba.oPregunta.RespuestaCorrecta">Respuesta Corecta</label>
-                    <input class="form-control" asp-for="Prueba.oPregunta.RespuestaCorrecta" id="validationTooltip06" required type="text" />
+                    <input class="form-control" asp-for="Prueba.oPregunta.RespuestaCorrecta" pattern="^[A-Za-z]$" maxlength="1" id="validationTooltip06" required type="text" />
                     <div class="invalid-tooltip">
                         Elegir Alternativa Correcta
                     </div>
                 </div>
                 <div class=" crearPregunta_input position-relative">
                     <label asp-for="Prueba.Puntaje">Puntaje</label>
-                    <input class="form-control" asp-for="Prueba.Puntaje" id="validationTooltip07" required type="text" />
+                    <input class="form-control" asp-for="Prueba.Puntaje" id="validationTooltip07" pattern="^[1-9]$" required type="text" />
                     <div class="invalid-tooltip">
                         Colocar Puntaje
                     </div>

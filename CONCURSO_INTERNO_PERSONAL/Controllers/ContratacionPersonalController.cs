@@ -24,33 +24,20 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
         }
 
         [Authorize(Roles = "jefeRecursosHumanos, admin")]
+        [HttpGet]
         public IActionResult TablaContratPersonal()
         {
             List<Personal> lista = _SmvContext.Personals.Include(pt => pt.oPuesto).ToList();
             return View(lista);
         }
-
-        public async Task<IActionResult> MostrarDetalle(int Idpersonal)
-        {
-            if (Idpersonal == 0 || _SmvContext.Personals.Include(pt => pt.oPuesto) == null)
-            {
-                return NotFound();
-            }
-
-            var personal = await _SmvContext.Personals.Include(pt =>pt.oPuesto)
-                .FirstOrDefaultAsync(m => m.Idpersonal == Idpersonal);
-            if (personal == null)
-            {
-                return NotFound();
-            }
-            return View(personal);
-        }
+        [HttpGet]
         public IActionResult VistaPDF()
         {
             List<Personal> lista = _SmvContext.Personals.Include(p => p.oPuesto).ToList();
             return View(lista);
         }
-
+        [Authorize(Roles = "jefeRecursosHumanos, admin")]
+        [HttpGet]
         public IActionResult MostrarPDFenPagina()
         {
             string pagina_actual = HttpContext.Request.Path;
@@ -75,6 +62,8 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
             return File(archivoPDF, "application/pdf");
         }
+        [Authorize(Roles = "jefeRecursosHumanos, admin")]
+        
         public IActionResult Eliminar(int Idpersonal)
         {
             try

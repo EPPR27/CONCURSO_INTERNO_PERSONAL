@@ -31,6 +31,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
             return View(lista);
         }
+        [Authorize(Roles = "jefeFinanzas, admin")]
         [HttpPost]
         public IActionResult Eliminar(int IdSolicSueldo)
         {
@@ -72,6 +73,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             }
             return View(presupuestoVM);
         }
+        [Authorize(Roles = "jefeRecursosHumanos, analistaPresupuestal, admin")]
         [HttpPost]
         public IActionResult SolicitarSueldo(PresupuestoVM oPresupuestoVM)
         {
@@ -97,13 +99,13 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             }
             
         }
-
         [HttpGet]
         public IActionResult VistaPDF(int IdSolicitud)
         {
             List<SolicitudSueldo> List = _context.SolicitudSueldos.Include(p => p.oPersonal).Include(p => p.oPersonal.oPuesto).ToList();
             return View(List);
         }
+        [Authorize(Roles = "jefeFinanzas, admin")]
         [HttpGet]
         public IActionResult VistaPDFenPagina()
         {
