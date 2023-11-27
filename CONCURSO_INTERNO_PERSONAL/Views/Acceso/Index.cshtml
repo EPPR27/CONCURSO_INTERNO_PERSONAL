@@ -11,25 +11,40 @@
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/login.css"/>
+    <link rel="stylesheet" href="~/css/login.css" />
     <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,900&display=swap" rel="stylesheet">
 </head>
 <body class="bg d-flex justify-content-center align-items-center">
-    <div class="container-fluid">
-        <div class="card offset-sm-4">
-            <label class="login">Iniciar Sesión</label>
+    <div class="container-fluid acceso_container">
+
+        <div class="card offset-sm-4  form-container container_login">
+            <h1 class="titulo">Iniciar Sesión</h1>
             <form asp-controller="Acceso" asp-action="Index" method="post">
                 <div class="inputBox mb-3">
                     <input type="email" asp-for="Correo" required="required">
-                    <span class="user">Correo</span>
+                    <label class="user">Correo</label>
                 </div>
                 <div class="inputBox mb-3">
                     <input type="password" asp-for="Clave" required="required">
-                    <span>Contraseña</span>
+                    <label>Contraseña</label>
                 </div>
 
                 <button class="enter" type="submit">Ingresar</button>
             </form>
+        </div>
+
+        <div class="form-container container_logo">
+
+
+            <img src="/imgCU/logo.png" alt="Logo de la empresa" class="img-logo">
+            <div>
+                <h1>SMV</h1>
+                <p>superintendencia <br /> del mercado de valores</p>
+            </div>
+
         </div>
     </div>
 
@@ -37,6 +52,43 @@
     <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
+
+
+        $(window, document, undefined).ready(function () {
+
+            $('input').blur(function () {
+                var $this = $(this);
+                if ($this.val())
+                    $this.addClass('used');
+                else
+                    $this.removeClass('used');
+            });
+
+            var $ripples = $('.ripples');
+
+            $ripples.on('click.Ripples', function (e) {
+
+                var $this = $(this);
+                var $offset = $this.parent().offset();
+                var $circle = $this.find('.ripplesCircle');
+
+                var x = e.pageX - $offset.left;
+                var y = e.pageY - $offset.top;
+
+                $circle.css({
+                    top: y + 'px',
+                    left: x + 'px'
+                });
+
+                $this.addClass('is-active');
+
+            });
+
+            $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function (e) {
+                $(this).removeClass('is-active');
+            });
+
+        });
         $(document).ready(function () {
             var errorMessage = '@Html.Raw(TempData["ErrorMessage"])';
 
