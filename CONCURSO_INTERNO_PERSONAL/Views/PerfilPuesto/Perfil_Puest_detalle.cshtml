@@ -4,70 +4,78 @@
     ViewData["Title"] = "Perfil_Puest_detalle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if(Model.oPerfilPuesto.IdPp == 0){
-    <h1>CREAR PERFIL DE PUESTO</h1>
-}
-else
-{
-    <h1>EDITAR PERFIL DE PUESTO</h1>
-}
 
-<div class="container-sm card border-3 m-4 p-5 d-flex justify-content-center align-items-center">
-    <div class="col-sm-4">
 
-        <form class="row was-validated" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" method="post" novalidate>
-            <input type="hidden" asp-for="oPerfilPuesto.IdPp" />
-            <div class="col-md-6 mb-5 position-relative">
-                <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdPuesto">Puesto</label>
-                <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdPuesto" asp-items="@Model.listaP" id="validationTooltip01" required>
-                    <option value="">----Seleccionar----</option>
-                </select>
-                <div class="invalid-tooltip">
-                    Seleccione un Puesto
-                </div>
-            </div>
-            <div class="col-md-6 mb-5 position-relative">
-                <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdSede">Sede</label>
-                <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdSede" asp-items="@Model.listaS" id="validationTooltip02" required>
-                    <option value="">----Seleccionar----</option>
-                </select>
-                <div class="invalid-tooltip">
-                    Seleccione una Sede
-                </div>
-            </div>
-            <div class="col-md-12 mb-5 position-relative">
-                <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdHb">Habilidades Blandas</label>
-                <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdHb" asp-items="@Model.listaHB" id="validationTooltip03" required>
-                    <option value="">----Seleccionar----</option>
-                </select>
-                <div class="invalid-tooltip">
-                    Seleccione una Habilidad Blanda
-                </div>
-            </div>
-            <div class="col-md-12 mb-5 position-relative">
-                <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdCl">Conocimientos Laborales</label>
-                <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdCl" asp-items="@Model.listaCL" id="validationTooltip04" required>
-                    <option value="">----Seleccionar----</option>
-                </select>
-                    <div class="invalid-tooltip">
-                        Selecione un Conocimiento laboral
-                    </div>
-            </div>
-            <div class="row">
-                @if (Model.oPerfilPuesto.IdPp == 0)
-                {
-                    <button type="submit" class="col-3 ms-3 btn btn-primary">Crear</button>
-                    <a class="col-3 ms-3 btn btn-dark btn-sm" asp-action="TablaPerfiles" asp-controller="PerfilPuesto">Perfiles Creados</a>
-                }
-                else
-                {
-                    <button type="submit" class="col-6 btn btn-primary">Actualizar</button>
-                }
-                <a class="col-3 ms-3 btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home"><i class="bi bi-arrow-return-left fs-5"></i></a>
-            </div>
-            
-        </form>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/estilo_PerfilPuesto.css" />
+
+
+<div class=" contendor_perfil-puesto">
+
+
+    <div class="titulo_formulario">
+        @if (Model.oPerfilPuesto.IdPp == 0)
+        {
+            <h1>CREAR PERFIL DE PUESTO</h1>
+        }
+        else
+        {
+            <h1>EDITAR PERFIL DE PUESTO</h1>
+        }
+    </div>
+
+    <div>
+        <div class=" perfilPuesto_form">
+
+            <form class="  was-validated" asp-action="Perfil_Puest_detalle" asp-controller="PerfilPuesto" method="post" novalidate>
+                <input type="hidden" asp-for="oPerfilPuesto.IdPp" />
+                <div class=" inputs-perfilPuesto ">
+                    <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdPuesto">Puesto</label>
+                    <select class=" form-select form-select-sm" asp-for="oPerfilPuesto.IdPuesto" asp-items="@Model.listaP" id="validationTooltip01" required>
+                        <option  value="">---- Seleccione un Puesto ----</option>
+                    </select>
+                    
+                </div>
+                <div class=" inputs-perfilPuesto ">
+                    <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdSede">Sede</label>
+                    <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdSede" asp-items="@Model.listaS" id="validationTooltip02" required>
+                        <option value="">---- Seleccione una Sede ---</option>
+                    </select>
+                    
+                </div>
+                <div class=" inputs-perfilPuesto ">
+                    <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdHb">Habilidades Blandas</label>
+                    <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdHb" asp-items="@Model.listaHB" id="validationTooltip03" required>
+                        <option value="">---- Seleccione una Habilidad Blanda ----</option>
+                    </select>
+                    
+                </div>
+                <div class=" inputs-perfilPuesto ">
+                    <label for="validationTooltip1" class="form-label" asp-for="oPerfilPuesto.IdCl">Conocimientos Laborales</label>
+                    <select class="form-select form-select-sm" asp-for="oPerfilPuesto.IdCl" asp-items="@Model.listaCL" id="validationTooltip04" required>
+                        <option value="">---- Selecione un Conocimiento laboral ----</option>
+                    </select>
+                    
+                </div>
+                <div class="perfilPuesto_botones row">
+                    @if (Model.oPerfilPuesto.IdPp == 0)
+                    {
+                        <button type="submit" class="col-3 botton-1 ms-3 btn btn-primary">Crear</button>
+                        <a class="col-3 ms-3 botton-2 btn btn-dark btn-sm" asp-action="TablaPerfiles" asp-controller="PerfilPuesto">Perfiles Creados</a>
+                    }
+                    else
+                    {
+                        <button type="submit" class="col-6 btn btn-primary">Actualizar</button>
+                    }
+                    <a class="col-3 ms-3 botton-3 btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home"><i class="bi bi-arrow-return-left fs-5"></i></a>
+                </div>
+
+            </form>
+
+        </div>
     </div>
 </div>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
