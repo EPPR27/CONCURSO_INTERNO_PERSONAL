@@ -12,20 +12,22 @@
     <meta name="viewport" content="width=device-width" />
     <title>Prueba_index</title>
     <link rel="stylesheet" href="/css/estilos_prueba_index.css">
-  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="contenedor_principal">
         <div class="contenedor_prueba-conocimiento">
             <div class="prueba_conocimiento-formulario">
-                <div>
-                    <h1>Prueba de Conocimiento</h1>
+                <div class="titulo">
+                    <h1></h1>
                 </div>
                <div class="prueba_textArea">
-                    <span class="previsualizacion">Previsualizacion</span>
+                    <span class="previsualizacion">Prueba de Conocimiento:</span>
                     <div class="text-area">
-                        <h5>Preguntas generadas:</h5>
+                        
                         <div class="text_area-preguntas">
                             
                             @foreach (var item in Model)
@@ -44,11 +46,12 @@
                     </div>
                    
                 </div>
-                <div class="botones row">
-                    <a class="btn-pdf btn btn-primary col-2 ms-3 btn-sm fs-3" asp-action="Pregunta_detalle"><i class=" bi bi-file-earmark-plus"></i></a>
+                
+                <div class="botones ">
+                    <a style="background:#1E71B4;" class="btn-pdf btn btn-primary col-2 ms-3 btn-sm fs-3" asp-action="Pregunta_detalle"><i class=" bi bi-file-earmark-plus"></i></a>
                     <a class="btn-pdf btn btn-danger col-2 ms-3 btn-sm fs-3" onclick="confirmarEliminacion()"><i class="bi bi-shield-x"></i></i></a>
-                    <a class="btn-pdf btn btn-success col-2 ms-3 btn-sm fs-3" asp-action="MostrarPDFenPagina" target="_blank"><i class=" bi bi-filetype-pdf"></i></a>
-                    <a class="btn-pdf btn btn-secondary col-2 ms-3 btn-sm fs-3" asp-action="Index" asp-controller="Home"><i class="bi bi-arrow-return-left"></i></a>
+                    <a style="background:#029052;"  class="btn-pdf btn btn-success col-2 ms-3 btn-sm fs-3" asp-action="MostrarPDFenPagina" target="_blank"><i class=" bi bi-filetype-pdf"></i></a>
+                    <a style="background:#612466;" class="btn-pdf btn btn-secondary col-2 ms-3 btn-sm fs-3" asp-action="Index" asp-controller="Home"><i class="bi bi-arrow-return-left"></i></a>
                 </div>
             </div>
         </div>
