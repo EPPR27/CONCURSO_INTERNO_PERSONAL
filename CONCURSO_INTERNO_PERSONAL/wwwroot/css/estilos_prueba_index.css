@@ -6,15 +6,15 @@
 }
 
 body {
-    background: #D9D9D9;
-    margin-bottom:50px;
+    background: #faf8f5;
+    margin-bottom: 50px;
 }
 
 .contenedor_principal {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #D9D9D9;
+   
     width: 1232px;
     height: 593px;
     border-radius: 8px;
@@ -26,10 +26,10 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 20px 55px;
-    background: #fff;
-    border: 1px solid #ccc;
+   
+    
     border-radius: 7px;
-    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.2);
+   
     width: 1045px;
     height: 550px;
 }
@@ -44,13 +44,13 @@ body {
     margin-bottom: 20px;
 }
 
-    .formulario label {
-        font-weight: bold;
-        color: #444;
-        margin-bottom: 15px;
+ .formulario label {
+        color: #374151;
+        font-size: 14px;
+        margin: 0px 0px 8px;
     }
 
-    .formulario input, .respuesta_correcta {
+.formulario input, .respuesta_correcta {
         width: 280px;
         height: 40px;
         border: 1px solid #ccc;
@@ -79,7 +79,7 @@ body {
     margin-bottom: 20px;
 }
 
-    .form_respuesta select {
+.form_respuesta select {
         text-align: center;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -93,17 +93,18 @@ body {
 
 
 .prueba_textArea {
+    background: #fff;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 800px;
-    height: 350px;
+    width: 1000px;
+    height: 450px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
 
-    .prueba_textArea .previsualizacion {
+.prueba_textArea .previsualizacion {
         opacity: 0.4;
     }
 
@@ -144,28 +145,17 @@ body {
     margin: 10px 0;
 }
 
-
-
-/*.btn-pdf {
-    width: 200px;
-    height: 40px;
-    margin: 0 auto;
-    background: #333;
-    color: #fff;
-    border-radius: 5px;
-    margin: 5px 90px;
-    cursor: pointer;
-}*/
-
-/*.botones {
+.botones {
+    margin-top: 20px;
+    width: 600px;
     display: flex;
+    justify-content: center;
 }
-
-.botones a {
-        text-decoration: none;
-        color: #fff;
-        text-align: center;
-        font-weight: bold;
-        padding: 10px;
- }
-*/
+.botones a{
+   display:flex;
+   justify-content:center;
+    padding:2px 60px;
+}
+.titulo h1{
+    font-size:18px
+}

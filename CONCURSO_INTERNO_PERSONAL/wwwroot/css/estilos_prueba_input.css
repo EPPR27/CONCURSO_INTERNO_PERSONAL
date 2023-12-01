@@ -5,36 +5,77 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+body {
+    background: #faf8f5;
+}
+main{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
 .contenedor {
+    width:500px;
     margin-bottom: 50px;
 }
-.crear_preguntas {
+.crearPregunta {
+    display: flex;
+    
+}
+.crear_preguntas  {
+
     justify-content: center;
     border: 1px solid #ccc;
     border-radius: 7px;
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.2);
-    padding: 35px 0;
+    padding: 35px 15px;
 }
-
-.crearPregunta_input {
-    margin: 0 30px;
+.crearPregunta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
-
-    .crearPregunta_input input {
-        background: rgba(255,255,255,0.1);
-        border: none;
-        font-size: 16px;
-        height: auto;
-        margin: 0;
-        outline: 0;
-        padding: 15px;
-        width: 400px;
-        border: 1px solid rgba(42, 44, 44, 0.342);
-        background-color: #feffff;
-        border-radius: 3px;
-        box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-        margin-bottom: 30px;
+.pregunta_input {
+    display: flex;
+    justify-content: space-between;
+   
+    width: 100%;
+}
+.pregunta_input div{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    
+}
+.pregunta_input .crearPregunta_input input{
+        width: 100%;
+       
     }
+.crearPregunta_1 {
+    margin-right: 20px;
+}
+
+.pregunta_crearPregunta label {
+    color: #374151;
+    font-size: 14px;
+    margin: 0px 0px 8px;
+}
+.crearPregunta_input label {
+    color: #374151;
+    font-size: 14px;
+    margin: 0px 0px 8px;
+}
+
+.crearPregunta_input input {
+
+    color: #20242f;
+    font-size: 14px;
+    
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
 
 h1 {
     margin: 0 0 30px 0;
@@ -42,35 +83,51 @@ h1 {
 }
 
 
-
-
-button {
-    padding: 12px 39px 12px 39px;
+.pregunta_crearPregunta {
+    margin-bottom: 30px;
+    width: 100%
+}
+.respuesta{
+   
+}
+.respuesta input {
+    width: 100%
+    
+}
+.botones{
+   
+    display:flex;
+    
+}
+.botones button {
+    padding: 8px ;
+    
     color: #FFF;
     background-color: #4bc970;
     font-size: 18px;
-    text-align: center;
+    
+    margin:10px;
     font-style: normal;
     border-radius: 5px;
-    width: 300px;
-    border: 1px solid #3ac162;
-    border-width: 1px 1px 3px;
+   
+   border:none;
     box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
     margin-bottom: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    opacity:.8;
+    transition: background 1s ease;
 }
 
-    button:hover {
-        background-color: rgba(25, 209, 34, 0.78)
-    }
-
-label {
-    display: block;
-    margin-bottom: 8px;
+.botones button:hover {
+    opacity:1;
 }
 
-    label.light {
-        font-weight: 300;
-        display: inline;
-    }
+.titulo_formulario h1 {
+    color: #444;
+    padding-bottom: 10px;
+    display: inline-block;
+    border-bottom: 1px solid #666;
+   
+    margin-bottom: 30px;
+    font-size: 16px;
+}
