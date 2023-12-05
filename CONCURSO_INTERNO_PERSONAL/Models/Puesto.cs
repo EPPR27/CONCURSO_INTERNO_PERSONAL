@@ -9,7 +9,7 @@ public partial class Puesto
 
     public string NomPuesto { get; set; } = null!;
 
-    public int Sueldo { get; set; }
+    public decimal Sueldo { get; set; }
 
     public virtual ICollection<PerfilPuesto> PerfilPuestos { get; set; } = new List<PerfilPuesto>();
 

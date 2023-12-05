@@ -9,7 +9,7 @@ public partial class SolicitudSueldo
 
     public int Idpersonal { get; set; }
 
-    public int SueldoSolic { get; set; }
+    public decimal SueldoSolic { get; set; }
 
     public string Descripcion { get; set; } = null!;
 

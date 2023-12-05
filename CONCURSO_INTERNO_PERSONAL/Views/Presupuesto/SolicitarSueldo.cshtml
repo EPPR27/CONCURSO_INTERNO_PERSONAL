@@ -3,42 +3,47 @@
     ViewData["Title"] = "SolicitarSueldo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container-sm card border-3 m-5">
 
-    <h1 class="p-2">Ingresar Solicitud de Sueldo</h1>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/estilos_SolicitarSueldo.css" />
 
-    <div class="row justify-content-center">
-        <div class="col-sm-4">
-            <form asp-action="SolicitarSueldo" asp-controller="Presupuesto" method="post" class="was-validated" novalidate>
+<div class=" ">
+    
+    
+  
+    <div class="  row justify-content-center">
+        <div class="contenedor_SolicitarSueldo   col-sm-4">
+            <div class="  titulo_formulario">
+                <h1 class="p-2">Ingresar Solicitud de Sueldo</h1>
+            </div>
+            <form asp-action="SolicitarSueldo" asp-controller="Presupuesto" method="post" class="was-validated " novalidate>
                 <input type="hidden" asp-for="oSolicitudSueldo.IdSolicSueldo"/>
-                <div class="mb-5 position-relative">
-                    <label class="form-label fw-bold" asp-for="oSolicitudSueldo.Idpersonal">Dni Postulante</label>
-                    <select class="form-select form-select-sm" asp-for="oSolicitudSueldo.Idpersonal" asp-items="@Model.oListaPersonal" id="validationTooltip01" required>
-                        <option value="">----Seleccionar----</option>
-                    </select>
-                    <div class="invalid-tooltip">
-                        Se requiere seleccionar un postulante
+                <div>
+                    <div class="inputs-SolicitarSueldo mb-5 position-relative">
+                        <label class="form-label " asp-for="oSolicitudSueldo.Idpersonal">Dni Postulante</label>
+                        <select class="form-select form-select-sm" asp-for="oSolicitudSueldo.Idpersonal" asp-items="@Model.oListaPersonal" id="validationTooltip01" required>
+                            <option value="">----Seleccionar----</option>
+                        </select>
+                       
+                    </div>
+                    <div class="inputs-SolicitarSueldo mb-5 position-relative">
+                        <label for="validationTooltip1" class="form-label " asp-for="oSolicitudSueldo.SueldoSolic">Sueldo Solicitado</label>
+                        <input class="form-control form-control-sm" id="validationTooltip02" placeholder="S/." asp-for="oSolicitudSueldo.SueldoSolic" value="" type="text" required />
+                       
+                    </div>
+                    <div class="inputs-SolicitarSueldo mb-5 position-relative">
+                        <label for="validationTooltip1" class="form-label " asp-for="oSolicitudSueldo.Descripcion">Motivo:</label>
+                        <input class="form-control form-control-sm" id="validationTooltip03" placeholder="logro(s) alcanzado(s)" asp-for="oSolicitudSueldo.Descripcion" type="text" required />
+                        
                     </div>
                 </div>
-                <div class="mb-5 position-relative">
-                    <label for="validationTooltip1" class="form-label fw-bold" asp-for="oSolicitudSueldo.SueldoSolic">Sueldo Solicitado</label>
-                    <input class="form-control form-control-sm" id="validationTooltip02" placeholder="S/." asp-for="oSolicitudSueldo.SueldoSolic" value="" type="text" required />
-                    <div class="invalid-tooltip">
-                        Por Favor Ingresar el sueldo solicitado
-                    </div>
-                </div>
-                <div class="mb-5 position-relative">
-                    <label for="validationTooltip1" class="form-label fw-bold" asp-for="oSolicitudSueldo.Descripcion">Motivo:</label>
-                    <input class="form-control form-control-sm" id="validationTooltip03" placeholder="logro(s) alcanzado(s)" asp-for="oSolicitudSueldo.Descripcion" type="text" required />
-                    <div class="invalid-tooltip">
-                        Por Favor Ingresar un motivo
-                    </div>
-                </div>
-                <div class="mb-2">
+                <div class=" botones mb-2">
 
-                    <button class="btn btn-primary btn-sm w-25" type="submit">Solicitar</button>
+                    <button class="btn botton-1 btn-primary btn-sm w-25" type="submit">Solicitar</button>
 
-                    <a class="btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
+                    <a class="btn botton-2 btn-secondary btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
 
                 </div>
 

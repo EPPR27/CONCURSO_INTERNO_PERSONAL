@@ -6,112 +6,126 @@
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/lib/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/css/SeleccionPersonal.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container-sm card border-3 m-5">
+    <div class=" contenedor_personal container-sm   m-5">
     @if (Model.oPersonal.Idpersonal == 0)
     {
-        <h1 class="p-2 mb-4">Ingresar Nuevo Postulante</h1>
+       
+            <div class="titulo_formulario">
+
+                <h1>Ingresar Nuevo Postulante</h1>
+            </div>
     }
     else
     {
-        <h1 class="p-2">Editar Datos del Postulante</h1>
+
+            <div class="titulo_formulario">
+
+                <h1 class="p-2">Editar Datos del Postulante</h1>
+            </div>
+        
     }
-    <div class="row justify-content-center">
-        <div class="col-sm-4">
-            <form class="row g-6 needs-validation was-validated" novalidate asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal" method="post">
+    <div class="  justify-content-center">
+        <div class="formulario_Personal">
+            <form class=" g-6 needs-validation was-validated" novalidate asp-action="AdministrarPersonal" asp-controller="SeleccionPersonal" method="post">
                 <input type="hidden" asp-for="oPersonal.Idpersonal" />
 
-                <div class="col-md-4 mb-5 position-relative">
-                    <label for="Idni" class="form-label fw-bold">DNI</label>
-                        <input id="Idni" required class="form-control form-control-sm" asp-for="oPersonal.Dni" type="text" pattern="[1-9]\d{7}" />
-                    <div class="invalid-tooltip">
-                        DNI incorrecto
-                    </div>
+                <div class="datos_postulante">
+                        <div class=" datos_postulante-DNI position-relative">
+                            <label for="Idni" class="">DNI</label>
+                            <input id="Idni" required class="form-control form-control-sm" asp-for="oPersonal.Dni" type="text" pattern="[1-9]\d{7}" maxlength="8" />
+
+                        </div>
+
+                        <div class="col-md-8 mb-5 position-relative">
+                            <label class="">Postulante</label>
+                            <input class="form-control form-control-sm" asp-for="oPersonal.NombapePers" pattern="^[A-Za-z ]+$" placeholder="Nombre Apellido" type="text" id="validationTooltip07" required />
+                            
+                        </div>
+                </div>
+                <div class="selects_postulantes">
+
+                        <div class="margin-select ">
+                            <label class="form-label ">Puesto</label>
+                            <select class="form-select form-select-sm" asp-for="oPersonal.IdPuesto" asp-items="@Model.oListaPuesto" id="validationTooltip08" required>
+                                <option value="">----Seleccionar----</option>
+                            </select>
+                           
+                        </div>
+
+                        <div class="">
+                            <label class="form-label">Habilidades Blandas</label>
+                            <select class="form-select form-select-sm" asp-for="oPersonal.IdHb" asp-items="@Model.oListaHabilidadesBlandas" id="validationTooltip01" required>
+                                <option value="">----Seleccionar----</option>
+                            </select>
+                            
+                        </div>
+
+                        <div class="margin-select">
+                            <label class="form-label ">Conocimientos Laborales</label>
+                            <select class="form-select form-select-sm" asp-for="oPersonal.IdCl" asp-items="@Model.oListaConocimientosLaborales" id="validationTooltip02" required>
+                                <option value="">----Seleccionar----</option>
+                            </select>
+                            
+                        </div>
+
+                        <div class="">
+                            <label class="form-label">Referencias Laborales</label>
+                            <input class="form-control form-control-sm" asp-for="oPersonal.RefeLaboral" placeholder="EMPRESA S.A." type="text" id="validationTooltip03" required />
+                            
+                        </div>
                 </div>
 
-                <div class="col-md-8 mb-5 position-relative">
-                    <label class="form-label fw-bold">Postulante</label>
-                    <input class="form-control form-control-sm" asp-for="oPersonal.NombapePers" placeholder="Nombre Apellido" type="text" id="validationTooltip07" required />
-                    <div class="invalid-tooltip">
-                        Ingresar Nombre Postulante
-                    </div>
-                </div>
+               <div class="notas_form">
+                        <div class="col-md-6 mb-5 position-relative">
+                            <label class=" form-label ">Nota Prueba</label>
+                            <input class="form-control form-control-sm" asp-for="oPersonal.Ppc" type="text" id="Ppc" pattern="^(?:[1-9]|1[1-9]|10|20)$" required />
+                            
+                        </div>
 
-                <div class="col-md-6 mb-5 position-relative">
-                    <label class="form-label fw-bold">Puesto</label>
-                    <select class="form-select form-select-sm" asp-for="oPersonal.IdPuesto" asp-items="@Model.oListaPuesto" id="validationTooltip08" required>
-                        <option value="">----Seleccionar----</option>
-                    </select>
-                    <div class="invalid-tooltip">
-                        Seleccionar Puesto
-                    </div>
-                </div>
+                        <div class="notas_margin col-md-6 mb-5 position-relative">
+                            <label class="form-label ">Nota CV</label>
+                            <input class="form-control form-control-sm" asp-for="oPersonal.Pcv" type="text" id="Pcv" pattern="^(?:[1-9]|1[1-9]|10|20)$" required />
+                            
+                        </div>
 
-                <div class="col-md-6 mb-5 position-relative">
-                    <label class="form-label fw-bold">Habilidades Blandas</label>
-                    <select class="form-select form-select-sm" asp-for="oPersonal.IdHb" asp-items="@Model.oListaHabilidadesBlandas" id="validationTooltip01" required>
-                        <option value="">----Seleccionar----</option>
-                    </select>
-                    <div class="invalid-tooltip">
-                        Seleccionar Hab. Blanda
-                    </div>
-                </div>
-
-                <div class="mb-5 position-relative">
-                    <label class="form-label fw-bold">Conocimientos Laborales</label>
-                    <select class="form-select form-select-sm" asp-for="oPersonal.IdCl" asp-items="@Model.oListaConocimientosLaborales" id="validationTooltip02" required>
-                        <option value="">----Seleccionar----</option>
-                    </select>
-                    <div class="invalid-tooltip">
-                        Seleccionar Con. Laboral
-                    </div>
-                </div>
-
-                <div class="mb-5 position-relative">
-                    <label class="form-label fw-bold">Referencias Laborales</label>
-                    <input class="form-control form-control-sm" asp-for="oPersonal.RefeLaboral" placeholder="EMPRESA S.A." type="text" id="validationTooltip03" required />
-                    <div class="invalid-tooltip">
-                        Ingresar Referencias
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-5 position-relative">
-                    <label class=" form-label fw-bold">Nota Prueba</label>
-                        <input class="form-control form-control-sm" asp-for="oPersonal.Ppc" type="text" id="Ppc" pattern="^(?:[1-9]|1[1-9]|10|20)$" required />
-                    <div class="invalid-tooltip">
-                        Ingresar Nota Válida
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-5 position-relative">
-                    <label class="form-label fw-bold">Nota CV</label>
-                        <input class="form-control form-control-sm" asp-for="oPersonal.Pcv" type="text" id="Pcv" pattern="^(?:[1-9]|1[1-9]|10|20)$" required />
-                    <div class="invalid-tooltip">
-                        Ingresar Nota Válida
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-5 position-relative">
-                    <label class="form-label fw-bold">Nota de Entrevista</label>
-                        <input class="form-control form-control-sm" asp-for="oPersonal.Pentrevista" type="text" id="Pentrevista" pattern="^(?:[1-9]|1[1-9]|10|20)$" required />
-                    <div class="invalid-tooltip">
-                        Ingresar Nota Válida
-                    </div>
-                </div>
-                <div class="mb-2">
+                        <div class="col-md-6 mb-5 position-relative">
+                            <label class="form-label ">Nota de Entrevista</label>
+                            <input class="form-control form-control-sm" asp-for="oPersonal.Pentrevista" type="text" id="Pentrevista" pattern="^(?:[1-9]|1[1-9]|10|20)$" required />
+                            
+                        </div>
+               </div>
+                    <div class=" botones ">
 
                     @if (Model.oPersonal.Idpersonal == 0)
                     {
-                            <button class="btn btn-primary btn-sm w-25" type="submit">Generar</button>
-                    }
+                            <button style="color:#fff;" class="btn botton-1 " type="submit">Generar</button>
+                            
+                    } 
                     else
                     {
-                        <button class="btn btn-primary btn-sm w-25" type="submit">Actualizar</button>
 
+
+
+                            <button style="color:#fff;" class="btn  botton-1 " type="submit">Actualizar</button>
+                            
                     }
-                        <a class="btn btn-secondary btn-sm" asp-action="Index" asp-controller="Home">Volver</a>
-                    <a class="btn btn-dark btn-sm" asp-action="TablaPerfiles" asp-controller="PerfilPuesto">Análisis Comparativo</a>
+                       
+                       
+                        
+
+                        <a style="color:#fff;" class="  col-3 ms-3 botton-2 btn btn-sm " asp-action="Index" asp-controller="Home"><p>Volver</p></a>
+
+
+                        <a style="color:#fff;" class=" col-3 ms-3 botton-3 btn  btn-sm  " asp-action="TablaPerfiles" asp-controller="PerfilPuesto"><p>Análisis Comparativo</p></a>
+                    
+                       
 
                 </div>
 

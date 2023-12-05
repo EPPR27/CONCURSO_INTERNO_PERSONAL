@@ -18,6 +18,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
 
         [Authorize(Roles = "comiteSeleccion, saoga, admin, jefeRecursosHumanos")]
+        [HttpGet]
         public IActionResult Index()
         {
             List<Personal> lista = _SmvContext.Personals
@@ -34,17 +35,20 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             PersonalVM oPersonalVM = new PersonalVM()
             {
                 oPersonal = new Personal(),
-                oListaConocimientosLaborales = _SmvContext.ConocimientosLaborales.Select(conocimientoslaborales => new SelectListItem()
+                oListaConocimientosLaborales = _SmvContext.ConocimientosLaborales
+                    .Select(conocimientoslaborales => new SelectListItem()
                 {
                     Text = conocimientoslaborales.NomCl,
                     Value = conocimientoslaborales.IdCl.ToString()
                 }).ToList(),
-                oListaHabilidadesBlandas = _SmvContext.HabilidadesBlandas.Select(habilidadesblandas => new SelectListItem()
+                oListaHabilidadesBlandas = _SmvContext.HabilidadesBlandas
+                    .Select(habilidadesblandas => new SelectListItem()
                 {
                     Text = habilidadesblandas.NomHb,
                     Value = habilidadesblandas.IdHb.ToString()
                 }).ToList(),
-                oListaPuesto = _SmvContext.Puestos.Select(puestos => new SelectListItem()
+                oListaPuesto = _SmvContext.Puestos
+                    .Select(puestos => new SelectListItem()
                 {
                     Text = puestos.NomPuesto,
                     Value = puestos.IdPuesto.ToString()
@@ -57,7 +61,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
 
             return View(oPersonalVM);
         }
-
+        [Authorize(Roles = "comiteSeleccion, saoga, admin")]
         [HttpPost]
         public IActionResult AdministrarPersonal(PersonalVM oPersonalVM)
         {
@@ -89,7 +93,7 @@ namespace CONCURSO_INTERNO_PERSONAL.Controllers
             }
             return RedirectToAction("Index", "SeleccionPersonal");
         }
-
+        [Authorize(Roles = "comiteSeleccion, saoga, admin, jefeRecursosHumanos")]
         public IActionResult Eliminar(int Idpersonal)
         {
             try
